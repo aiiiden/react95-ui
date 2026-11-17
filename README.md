@@ -78,25 +78,35 @@ Pixel fonts only look sharp at their native size or a whole multiple of it. Each
 
 ## Install from the registry
 
-The registry is published at `https://aiiiden.github.io/react95-ui/r/`. Add it to your app's `components.json`:
+Three ways, all served from this repository. Items pull in what they depend on (the theme, `cn()`, other components and npm packages).
+
+**1. GitHub address** (no configuration):
+
+```bash
+npx shadcn@latest add aiiiden/react95-ui/theme aiiiden/react95-ui/button aiiiden/react95-ui/window
+```
+
+**2. URL** (no configuration):
+
+```bash
+npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/button.json
+```
+
+**3. Namespace**. Add the registry to your app's `components.json` once:
 
 ```json
 {
   "registries": {
-    "@react95": "https://aiiiden.github.io/react95-ui/r/{name}.json"
+    "@react95-ui": "https://aiiiden.github.io/react95-ui/r/{name}.json"
   }
 }
 ```
 
 ```bash
-npx shadcn@latest add @react95/theme @react95/button @react95/window
+npx shadcn@latest add @react95-ui/theme @react95-ui/button @react95-ui/window
 ```
 
-Or install one item by URL, with no configuration:
-
-```bash
-npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/button.json
-```
+The full item list is in [`registry.json`](./registry.json).
 
 Then import the theme once, for example in `src/index.css`:
 

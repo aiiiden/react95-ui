@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "react95",
+  "name": "react95-ui",
   "homepage": "https://aiiiden.github.io/react95-ui/",
   "items": [
     {
@@ -44,8 +44,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -62,10 +62,10 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/button",
-        "@react95/message-icon",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/button.json",
+        "https://aiiiden.github.io/react95-ui/r/message-icon.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -80,9 +80,9 @@
       "title": "Alert",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/message-icon",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/message-icon.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -99,8 +99,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -115,8 +115,8 @@
       "title": "App Bar",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -133,7 +133,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme"
+        "https://aiiiden.github.io/react95-ui/r/theme.json"
       ],
       "files": [
         {
@@ -150,8 +150,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -169,8 +169,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -187,9 +187,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -204,8 +204,8 @@
       "title": "Button Group",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -223,8 +223,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -239,9 +239,9 @@
       "title": "Calendar",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -256,8 +256,8 @@
       "title": "Card",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -274,9 +274,9 @@
         "embla-carousel-react"
       ],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -293,8 +293,8 @@
         "recharts"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -311,8 +311,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -329,7 +329,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme"
+        "https://aiiiden.github.io/react95-ui/r/theme.json"
       ],
       "files": [
         {
@@ -344,9 +344,9 @@
       "title": "Color Input",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -361,11 +361,11 @@
       "title": "Combobox",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/command",
-        "@react95/icons",
-        "@react95/popover",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/command.json",
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/popover.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -382,8 +382,8 @@
         "cmdk"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -400,10 +400,10 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/dropdown-menu",
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/dropdown-menu.json",
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -418,8 +418,8 @@
       "title": "Counter",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -434,12 +434,12 @@
       "title": "Date Picker",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/button",
-        "@react95/number-input",
-        "@react95/select",
-        "@react95/theme",
-        "@react95/utils",
-        "@react95/window"
+        "https://aiiiden.github.io/react95-ui/r/button.json",
+        "https://aiiiden.github.io/react95-ui/r/number-input.json",
+        "https://aiiiden.github.io/react95-ui/r/select.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json",
+        "https://aiiiden.github.io/react95-ui/r/window.json"
       ],
       "files": [
         {
@@ -456,9 +456,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils",
-        "@react95/window"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json",
+        "https://aiiiden.github.io/react95-ui/r/window.json"
       ],
       "files": [
         {
@@ -475,8 +475,8 @@
         "vaul"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -493,9 +493,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -513,9 +513,9 @@
         "react-hook-form"
       ],
       "registryDependencies": [
-        "@react95/label",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/label.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -532,8 +532,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -548,8 +548,8 @@
       "title": "Group Box",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -564,8 +564,8 @@
       "title": "Handle",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -580,9 +580,9 @@
       "title": "Hourglass",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -599,8 +599,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -630,8 +630,8 @@
         "input-otp"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -646,8 +646,8 @@
       "title": "Input",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -662,8 +662,8 @@
       "title": "Kbd",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -680,8 +680,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -698,8 +698,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -716,10 +716,10 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/dropdown-menu",
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/dropdown-menu.json",
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -734,8 +734,8 @@
       "title": "Message Icon",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json"
       ],
       "files": [
         {
@@ -750,8 +750,8 @@
       "title": "Monitor",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -768,10 +768,10 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/dropdown-menu",
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/dropdown-menu.json",
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -786,9 +786,9 @@
       "title": "Number Input",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -803,10 +803,10 @@
       "title": "Pagination",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/button",
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/button.json",
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -823,8 +823,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -841,8 +841,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -859,9 +859,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -878,8 +878,8 @@
         "react-resizable-panels"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -894,8 +894,8 @@
       "title": "Scroll View",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -912,9 +912,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -931,8 +931,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -949,9 +949,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils",
-        "@react95/window"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json",
+        "https://aiiiden.github.io/react95-ui/r/window.json"
       ],
       "files": [
         {
@@ -968,8 +968,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -984,8 +984,8 @@
       "title": "Skeleton",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1002,8 +1002,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1020,8 +1020,8 @@
         "sonner"
       ],
       "registryDependencies": [
-        "@react95/message-icon",
-        "@react95/theme"
+        "https://aiiiden.github.io/react95-ui/r/message-icon.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json"
       ],
       "files": [
         {
@@ -1038,8 +1038,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1054,8 +1054,8 @@
       "title": "Table",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1072,9 +1072,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/icons",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1091,9 +1091,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/toggle",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/toggle.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1111,9 +1111,9 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "@react95/button",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/button.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1130,9 +1130,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/button",
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/button.json",
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1149,8 +1149,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1165,8 +1165,8 @@
       "title": "Tree View",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
@@ -1181,8 +1181,8 @@
       "title": "Window",
       "dependencies": [],
       "registryDependencies": [
-        "@react95/theme",
-        "@react95/utils"
+        "https://aiiiden.github.io/react95-ui/r/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],
       "files": [
         {
