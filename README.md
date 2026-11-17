@@ -167,7 +167,7 @@ React95 UI is written by [aiiiden](https://github.com/aiiiden). It stands on the
 - [shadcn/ui](https://ui.shadcn.com): the registry format, the copy-and-own approach and the component APIs for the non-React95 set.
 - [Radix UI](https://www.radix-ui.com): behavior and accessibility.
 - [catarchy](https://github.com/catarchy-net/catarchy): the pixel font setup (one font per size, split by `unicode-range`).
-- [UnifontEX](https://stgiga.github.io/UnifontEX/) by stgiga and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) by TakWolf: the recommended fonts.
+- [UnifontEX](https://github.com/stgiga/UnifontEX) by stgiga and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) by TakWolf: the recommended fonts.
 - Windows 95, 98 and XP: the look being reinterpreted. No Microsoft code, fonts or icon artwork is included.
 
 ## Licenses
