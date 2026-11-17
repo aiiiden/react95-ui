@@ -152,7 +152,7 @@ export function App() {
                   CSS variables and Tailwind utilities replace styled-components, and Radix UI handles behavior. Copy the code into your project and make it yours.
                 </p>
                 <Frame variant="field" className="scrollbar-r95 overflow-x-auto p-3 type-12">
-                  <pre>{`npx shadcn@latest add @react95/theme @react95/button @react95/window
+                  <pre>{`npx shadcn@latest add aiiiden/react95-ui/button aiiiden/react95-ui/window
 
 <Button primary>OK</Button>
 <div className="bevel-window bg-material p-2">bevel utility</div>`}</pre>
