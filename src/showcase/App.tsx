@@ -61,6 +61,9 @@ function useTheme() {
     if (theme) root.setAttribute("data-r95-theme", theme)
     else root.removeAttribute("data-r95-theme")
     try { localStorage.setItem("r95-mode", mode); localStorage.setItem("r95-theme", theme) } catch { /* storage blocked */ }
+    // browser chrome (address bar, in-app browser bars) takes the window color of the current theme
+    const material = getComputedStyle(root).getPropertyValue("--material").trim()
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", material)
     return () => {
       mq.removeEventListener("change", apply)
       obs.disconnect()
