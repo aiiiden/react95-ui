@@ -1,0 +1,466 @@
+/*
+ * React95 UI — Tailwind CSS v4 theme
+ * Port of React95 (MIT, github.com/arturbien/React95) to Tailwind v4 + shadcn conventions.
+ *
+ * 1. React95 material tokens (:root light, .dark)
+ * 2. shadcn semantic tokens mapped onto material tokens
+ * 3. @theme inline → Tailwind color/font utilities
+ * 4. Bevel recipes as @utility (bevel-button, bevel-field, ...)
+ * 5. Pixel type utilities (type-10 ... type-48)
+ *
+ * Fonts are not part of the theme. It names three font families and falls back to the
+ * system monospace font when they are missing. For the intended look, load pixel fonts
+ * yourself: the recommended set is in src/assets/fonts (import its fonts.css).
+ */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- 1. React95 material tokens ---------- */
+:root {
+  /* original (Windows 95) */
+  --anchor: #1034a6;
+  --anchor-visited: #440381;
+  --border-lightest: #fefefe;
+  --border-light: #dfdfdf;
+  --border-dark: #848584;
+  --border-darkest: #0a0a0a;
+  --canvas: #ffffff;
+  --canvas-text: #0a0a0a;
+  --canvas-text-disabled: #848584;
+  --canvas-text-disabled-shadow: #fefefe;
+  --canvas-text-invert: #fefefe;
+  --checkmark: #0a0a0a;
+  --checkmark-disabled: #848584;
+  --desktop-background: #008080;
+  --flat-dark: #9e9e9e;
+  --flat-light: #d8d8d8;
+  --focus-secondary: #fefe03;
+  --header-background: #060084;
+  --header-not-active-background: #7f787f;
+  --header-not-active-text: #c6c6c6;
+  --header-text: #fefefe;
+  --hover-background: #060084;
+  --material: #c6c6c6;
+  --material-dark: #9a9e9c;
+  --material-text: #0a0a0a;
+  --material-text-disabled: #848584;
+  --material-text-disabled-shadow: #fefefe;
+  --material-text-invert: #fefefe;
+  --progress: #060084;
+  --tooltip: #fefbcc;
+
+  /* additions (not in React95): semantic status colors */
+  --danger: #a80000;
+  --success: #007a00;
+}
+
+/* Dark pair designed for this port: original 95 structure, night palette */
+.dark {
+  --anchor: #8fb0ff;
+  --anchor-visited: #c59cff;
+  --border-lightest: #5b5f6b;
+  --border-light: #3f424b;
+  --border-dark: #17181c;
+  --border-darkest: #000000;
+  --canvas: #15161a;
+  --canvas-text: #e9e9ec;
+  --canvas-text-disabled: #6a6e7a;
+  --canvas-text-disabled-shadow: #000000;
+  --canvas-text-invert: #ffffff;
+  --checkmark: #e9e9ec;
+  --checkmark-disabled: #6a6e7a;
+  --desktop-background: #0b3b3b;
+  --flat-dark: #4a4d57;
+  --flat-light: #2a2c33;
+  --focus-secondary: #fefe03;
+  --header-background: #2b3cc4;
+  --header-not-active-background: #3d4049;
+  --header-not-active-text: #9a9ea8;
+  --header-text: #ffffff;
+  --hover-background: #2b3cc4;
+  --material: #2c2e35;
+  --material-dark: #23252b;
+  --material-text: #e9e9ec;
+  --material-text-disabled: #6a6e7a;
+  --material-text-disabled-shadow: #000000;
+  --material-text-invert: #ffffff;
+  --progress: #4f6dff;
+  --tooltip: #3a3520;
+  --danger: #ff6b6b;
+  --success: #5fd35f;
+  color-scheme: dark;
+}
+
+/* ---------- 2. shadcn semantic tokens ---------- */
+:root,
+.dark {
+  --background: var(--desktop-background);
+  --foreground: var(--material-text);
+  --card: var(--material);
+  --card-foreground: var(--material-text);
+  --popover: var(--material);
+  --popover-foreground: var(--material-text);
+  --primary: var(--header-background);
+  --primary-foreground: var(--header-text);
+  --secondary: var(--material);
+  --secondary-foreground: var(--material-text);
+  --muted: var(--material-dark);
+  --muted-foreground: var(--material-text-disabled);
+  --accent: var(--hover-background);
+  --accent-foreground: var(--material-text-invert);
+  --destructive: var(--danger);
+  --border: var(--border-dark);
+  --input: var(--canvas);
+  --ring: var(--material-text);
+  --radius: 0px;
+}
+
+/* ---------- 3. Tailwind theme ---------- */
+@theme inline {
+  --color-anchor: var(--anchor);
+  --color-anchor-visited: var(--anchor-visited);
+  --color-border-lightest: var(--border-lightest);
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+  --color-border-darkest: var(--border-darkest);
+  --color-canvas: var(--canvas);
+  --color-canvas-text: var(--canvas-text);
+  --color-canvas-text-disabled: var(--canvas-text-disabled);
+  --color-canvas-text-invert: var(--canvas-text-invert);
+  --color-checkmark: var(--checkmark);
+  --color-checkmark-disabled: var(--checkmark-disabled);
+  --color-desktop: var(--desktop-background);
+  --color-flat-dark: var(--flat-dark);
+  --color-flat-light: var(--flat-light);
+  --color-focus-secondary: var(--focus-secondary);
+  --color-header: var(--header-background);
+  --color-header-text: var(--header-text);
+  --color-header-inactive: var(--header-not-active-background);
+  --color-header-inactive-text: var(--header-not-active-text);
+  --color-hover: var(--hover-background);
+  --color-material: var(--material);
+  --color-material-dark: var(--material-dark);
+  --color-material-text: var(--material-text);
+  --color-material-text-disabled: var(--material-text-disabled);
+  --color-material-text-invert: var(--material-text-invert);
+  --color-progress: var(--progress);
+  --color-tooltip: var(--tooltip);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* The three font slots. Point them at any pixel fonts you like: each type-* utility pairs
+     one slot with the size that font was drawn for, so change those sizes to match.
+     Without the fonts loaded, text falls back to the system monospace font. */
+  --font-pixel: "UnifontExMono", ui-monospace, monospace;
+  --font-pixel-sm: "FusionPixel12", "UnifontExMono", ui-monospace, monospace;
+  --font-pixel-xs: "FusionPixel10", "FusionPixel12", "UnifontExMono", ui-monospace, monospace;
+  --font-sans: var(--font-pixel);
+  --font-mono: var(--font-pixel);
+
+  --animate-hourglass: r95-hourglass 2.4s steps(1) infinite;
+  @keyframes r95-hourglass {
+    0%, 70% { transform: rotate(0deg); }
+    80% { transform: rotate(90deg); }
+    90%, 100% { transform: rotate(180deg); }
+  }
+
+  --radius-r95: 0px;
+}
+
+/* ---------- 4. Bevel recipes ----------
+ * Outer ring = 2px border (top-left / bottom-right colors)
+ * Inner ring = inset box-shadow 1px (top-left / bottom-right colors)
+ * Pressed states swap the two sides, exactly like React95's createBorderStyles({ invert: true }).
+ */
+@utility bevel {
+  border-style: solid;
+  border-width: 2px;
+  border-color: var(--r95-tlo) var(--r95-bro) var(--r95-bro) var(--r95-tlo);
+  box-shadow:
+    inset 1px 1px 0 1px var(--r95-tli, transparent),
+    inset -1px -1px 0 1px var(--r95-bri, transparent);
+}
+@utility bevel-button {
+  @apply bevel;
+  --r95-tlo: var(--border-lightest);
+  --r95-tli: var(--border-light);
+  --r95-bri: var(--border-dark);
+  --r95-bro: var(--border-darkest);
+}
+@utility bevel-button-pressed {
+  @apply bevel;
+  --r95-tlo: var(--border-darkest);
+  --r95-tli: var(--border-dark);
+  --r95-bri: var(--border-light);
+  --r95-bro: var(--border-lightest);
+}
+@utility bevel-thin {
+  @apply bevel;
+  --r95-tlo: var(--border-lightest);
+  --r95-tli: transparent;
+  --r95-bri: transparent;
+  --r95-bro: var(--border-dark);
+}
+@utility bevel-thin-pressed {
+  @apply bevel;
+  --r95-tlo: var(--border-dark);
+  --r95-tli: transparent;
+  --r95-bri: transparent;
+  --r95-bro: var(--border-lightest);
+}
+@utility bevel-field {
+  @apply bevel;
+  --r95-tlo: var(--border-dark);
+  --r95-tli: var(--border-darkest);
+  --r95-bri: var(--border-light);
+  --r95-bro: var(--border-lightest);
+}
+@utility bevel-grouping {
+  @apply bevel;
+  --r95-tlo: var(--border-dark);
+  --r95-tli: var(--border-lightest);
+  --r95-bri: var(--border-dark);
+  --r95-bro: var(--border-lightest);
+}
+@utility bevel-status {
+  @apply bevel;
+  --r95-tlo: var(--border-dark);
+  --r95-tli: transparent;
+  --r95-bri: transparent;
+  --r95-bro: var(--border-lightest);
+}
+@utility bevel-window {
+  @apply bevel;
+  --r95-tlo: var(--border-light);
+  --r95-tli: var(--border-lightest);
+  --r95-bri: var(--border-dark);
+  --r95-bro: var(--border-darkest);
+}
+/* React95 createFlatBoxStyles */
+@utility bevel-flat {
+  border: 2px solid var(--canvas);
+  box-shadow: inset 0 0 0 2px var(--flat-dark);
+}
+@utility bevel-none {
+  border-color: transparent;
+  box-shadow: none;
+}
+/* 2px checkerboard (React95 createHatchedBackground) */
+@utility hatched {
+  background-image:
+    linear-gradient(45deg, var(--r95-hatch, var(--border-lightest)) 25%, transparent 25%, transparent 75%, var(--r95-hatch, var(--border-lightest)) 75%),
+    linear-gradient(45deg, var(--r95-hatch, var(--border-lightest)) 25%, transparent 25%, transparent 75%, var(--r95-hatch, var(--border-lightest)) 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+}
+
+/* ---------- Balloon ----------
+ * The Windows XP notification balloon, redrawn on the pixel grid: pale yellow, a 1px outline
+ * with stepped corners, and a stepped tail that points down at the taskbar.
+ * The element is the outline color; ::before lays the fill 1px inside it.
+ * The bottom 8px of the box is the tail, so content needs that much extra bottom padding.
+ */
+@utility balloon {
+  position: relative;
+  isolation: isolate;
+  background: var(--border-darkest);
+  color: var(--canvas-text);
+  clip-path: polygon(2px 0, calc(100% - 2px) 0, calc(100% - 2px) 1px, calc(100% - 1px) 1px, calc(100% - 1px) 2px, 100% 2px, 100% calc(100% - 10px), calc(100% - 1px) calc(100% - 10px), calc(100% - 1px) calc(100% - 9px), calc(100% - 2px) calc(100% - 9px), calc(100% - 2px) calc(100% - 8px), calc(100% - 22px) calc(100% - 8px), calc(100% - 22px) calc(100% - 0px), calc(100% - 23px) calc(100% - 0px), calc(100% - 23px) calc(100% - 1px), calc(100% - 24px) calc(100% - 1px), calc(100% - 24px) calc(100% - 2px), calc(100% - 25px) calc(100% - 2px), calc(100% - 25px) calc(100% - 3px), calc(100% - 26px) calc(100% - 3px), calc(100% - 26px) calc(100% - 4px), calc(100% - 27px) calc(100% - 4px), calc(100% - 27px) calc(100% - 5px), calc(100% - 28px) calc(100% - 5px), calc(100% - 28px) calc(100% - 6px), calc(100% - 29px) calc(100% - 6px), calc(100% - 29px) calc(100% - 7px), calc(100% - 30px) calc(100% - 7px), calc(100% - 30px) calc(100% - 8px), 2px calc(100% - 8px), 2px calc(100% - 9px), 1px calc(100% - 9px), 1px calc(100% - 10px), 0 calc(100% - 10px), 0 2px, 1px 2px, 1px 1px, 2px 1px);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 1px 1px 3px 1px;
+    z-index: -1;
+    background: var(--tooltip);
+    clip-path: polygon(2px 0, calc(100% - 2px) 0, calc(100% - 2px) 1px, calc(100% - 1px) 1px, calc(100% - 1px) 2px, 100% 2px, 100% calc(100% - 8px), calc(100% - 1px) calc(100% - 8px), calc(100% - 1px) calc(100% - 7px), calc(100% - 2px) calc(100% - 7px), calc(100% - 2px) calc(100% - 6px), calc(100% - 22px) calc(100% - 6px), calc(100% - 22px) calc(100% - 0px), calc(100% - 23px) calc(100% - 0px), calc(100% - 23px) calc(100% - 1px), calc(100% - 24px) calc(100% - 1px), calc(100% - 24px) calc(100% - 2px), calc(100% - 25px) calc(100% - 2px), calc(100% - 25px) calc(100% - 3px), calc(100% - 26px) calc(100% - 3px), calc(100% - 26px) calc(100% - 4px), calc(100% - 27px) calc(100% - 4px), calc(100% - 27px) calc(100% - 5px), calc(100% - 28px) calc(100% - 5px), calc(100% - 28px) calc(100% - 6px), 2px calc(100% - 6px), 2px calc(100% - 7px), 1px calc(100% - 7px), 1px calc(100% - 8px), 0 calc(100% - 8px), 0 2px, 1px 2px, 1px 1px, 2px 1px);
+  }
+}
+
+/* dotted focus rectangle */
+@utility focus-r95 {
+  outline: 1px dotted var(--material-text);
+  outline-offset: -5px;
+}
+
+/* engraved disabled text */
+@utility text-engraved {
+  color: var(--material-text-disabled);
+  text-shadow: var(--r95-px, 1px) var(--r95-px, 1px) 0 var(--material-text-disabled-shadow);
+}
+
+/* ---------- Pixel type ----------
+ * A pixel font is only sharp at the size it was drawn for (or a whole multiple).
+ * Each type-* utility therefore sets font-family, font-size and line-height together,
+ * so a 12px face can never end up rendered at 16px.
+ *   type-10  Fusion Pixel 10px      type-32  UnifontExMono x2
+ *   type-12  Fusion Pixel 12px      type-48  UnifontExMono x3
+ *   type-16  UnifontExMono 16px
+ * --r95-px is the size of one font pixel, used by font-pixel-bold and text-engraved.
+ */
+@utility type-10 {
+  font-family: var(--font-pixel-xs);
+  font-size: 10px;
+  line-height: 12px;
+  --r95-px: 1px;
+}
+@utility type-12 {
+  font-family: var(--font-pixel-sm);
+  font-size: 12px;
+  line-height: 16px;
+  --r95-px: 1px;
+}
+@utility type-16 {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  line-height: 20px;
+  --r95-px: 1px;
+}
+@utility type-32 {
+  font-family: var(--font-pixel);
+  font-size: 32px;
+  line-height: 40px;
+  --r95-px: 2px;
+}
+@utility type-48 {
+  font-family: var(--font-pixel);
+  font-size: 48px;
+  line-height: 56px;
+  --r95-px: 3px;
+}
+
+/* Bold, in two modes switched by --r95-pixel (0 or 1; the bundled fonts.css sets it to 1):
+ *   1  pixel fonts are loaded. They have no bold weight, so the glyph is double-struck one
+ *      font pixel to the right, the way bitmap systems did. Edges stay on the pixel grid.
+ *      Letter-spacing makes room for the extra pixel, and text-indent re-centers the label.
+ *   0  no pixel fonts. Use the fallback font's real bold weight and add nothing else.
+ * If you load your own pixel fonts, set `:root { --r95-pixel: 1 }` yourself. */
+@utility font-pixel-bold {
+  --r95-strike: calc(var(--r95-pixel, 0) * var(--r95-px, 1px));
+  font-weight: calc(700 - var(--r95-pixel, 0) * 300);
+  font-synthesis: weight;
+  text-shadow: var(--r95-strike) 0 0 currentColor;
+  letter-spacing: var(--r95-strike);
+  text-indent: var(--r95-strike);
+}
+
+@utility pixelated {
+  image-rendering: pixelated;
+}
+
+/* Windows 95 scrollbars (WebKit/Blink). Firefox falls back to scrollbar-color. */
+@utility scrollbar-r95 {
+  /* no rubber-band bounce or scroll chaining: a 95 list stops dead at its edge */
+  overscroll-behavior: none;
+  &::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--material);
+    background-image:
+      linear-gradient(45deg, var(--border-lightest) 25%, transparent 25%, transparent 75%, var(--border-lightest) 75%),
+      linear-gradient(45deg, var(--border-lightest) 25%, transparent 25%, transparent 75%, var(--border-lightest) 75%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--material);
+    border: 2px solid;
+    border-color: var(--border-lightest) var(--border-darkest) var(--border-darkest) var(--border-lightest);
+    box-shadow: inset 1px 1px 0 0 var(--border-light), inset -1px -1px 0 0 var(--border-dark);
+  }
+  &::-webkit-scrollbar-corner {
+    background: var(--material);
+  }
+  &::-webkit-scrollbar-button:single-button {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--material);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid;
+    border-color: var(--border-lightest) var(--border-darkest) var(--border-darkest) var(--border-lightest);
+    box-shadow: inset 1px 1px 0 0 var(--border-light), inset -1px -1px 0 0 var(--border-dark);
+  }
+  &::-webkit-scrollbar-button:single-button:active {
+    border-color: var(--border-darkest) var(--border-lightest) var(--border-lightest) var(--border-darkest);
+    box-shadow: inset 1px 1px 0 0 var(--border-dark);
+  }
+  &::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: conic-gradient(from 135deg at 50% 0, var(--material-text) 90deg, transparent 0);
+    background-size: 8px 4px;
+  }
+  &::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: conic-gradient(from -45deg at 50% 100%, var(--material-text) 90deg, transparent 0);
+    background-size: 8px 4px;
+  }
+  &::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background-image: conic-gradient(from 45deg at 0 50%, var(--material-text) 90deg, transparent 0);
+    background-size: 4px 8px;
+  }
+  &::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-image: conic-gradient(from 225deg at 100% 50%, var(--material-text) 90deg, transparent 0);
+    background-size: 4px 8px;
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--material) var(--border-light);
+  }
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    font-kerning: none;
+    font-variant-ligatures: none;
+    font-optical-sizing: none;
+    text-rendering: optimizeSpeed;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  /* Tailwind's preflight gives these the mono font at 1em, which would break the
+     font/size pairing. They inherit whatever type-* is in effect instead. */
+  code, kbd, samp, pre {
+    font-family: inherit;
+    font-size: inherit;
+  }
+  :focus-visible {
+    outline: 1px dotted var(--material-text);
+  }
+}
+
+/* Page defaults. Deliberately outside any @layer: layered CSS loses to every unlayered
+ * rule, so a host page or reset that styles `body` (font, size, color) would otherwise
+ * replace the pixel font on all text that inherits from it. */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  line-height: 20px;
+  --r95-px: 1px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}

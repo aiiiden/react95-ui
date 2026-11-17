@@ -1,0 +1,170 @@
+/* Optional add-on to fonts.css: Hangul, kana, CJK ideographs (U+4E00-9FFF) and CJK
+ * punctuation for the same three pixel fonts. Import it after fonts.css.
+ * About 2.1 MB in total, but split by unicode-range: a Korean page fetches only the
+ * Hangul files (about 340 KB for all three sizes), and nothing is fetched for scripts
+ * a page does not use. SIL OFL 1.1, see the LICENSE files in this folder. */
+
+@font-face {
+  font-family: "UnifontExMono";
+  src: url("./UnifontExMono-korean.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range:
+    U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF;
+}
+
+@font-face {
+  font-family: "UnifontExMono";
+  src: url("./UnifontExMono-kana.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+3040-309F, U+30A0-30FF, U+31F0-31FF, U+FF65-FF9F;
+}
+
+@font-face {
+  font-family: "UnifontExMono";
+  src: url("./UnifontExMono-cjk-punct.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+3000-303F;
+}
+
+@font-face {
+  font-family: "UnifontExMono";
+  src: url("./UnifontExMono-cjk-1.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+4E00-6FFF;
+}
+
+@font-face {
+  font-family: "UnifontExMono";
+  src: url("./UnifontExMono-cjk-2.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+7000-8FFF;
+}
+
+@font-face {
+  font-family: "UnifontExMono";
+  src: url("./UnifontExMono-cjk-3.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+9000-9FFF;
+}
+
+@font-face {
+  font-family: "FusionPixel12";
+  src: url("./fusion-pixel-12px-monospaced-korean.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range:
+    U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF;
+}
+
+@font-face {
+  font-family: "FusionPixel12";
+  src: url("./fusion-pixel-12px-monospaced-kana.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+3040-309F, U+30A0-30FF, U+31F0-31FF, U+FF65-FF9F;
+}
+
+@font-face {
+  font-family: "FusionPixel12";
+  src: url("./fusion-pixel-12px-monospaced-cjk-punct.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+3000-303F;
+}
+
+@font-face {
+  font-family: "FusionPixel12";
+  src: url("./fusion-pixel-12px-monospaced-cjk-1.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+4E00-6FFF;
+}
+
+@font-face {
+  font-family: "FusionPixel12";
+  src: url("./fusion-pixel-12px-monospaced-cjk-2.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+7000-8FFF;
+}
+
+@font-face {
+  font-family: "FusionPixel12";
+  src: url("./fusion-pixel-12px-monospaced-cjk-3.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+9000-9FFF;
+}
+
+@font-face {
+  font-family: "FusionPixel10";
+  src: url("./fusion-pixel-10px-monospaced-korean.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range:
+    U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF;
+}
+
+@font-face {
+  font-family: "FusionPixel10";
+  src: url("./fusion-pixel-10px-monospaced-kana.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+3040-309F, U+30A0-30FF, U+31F0-31FF, U+FF65-FF9F;
+}
+
+@font-face {
+  font-family: "FusionPixel10";
+  src: url("./fusion-pixel-10px-monospaced-cjk-punct.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+3000-303F;
+}
+
+@font-face {
+  font-family: "FusionPixel10";
+  src: url("./fusion-pixel-10px-monospaced-cjk-1.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+4E00-6FFF;
+}
+
+@font-face {
+  font-family: "FusionPixel10";
+  src: url("./fusion-pixel-10px-monospaced-cjk-2.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+7000-8FFF;
+}
+
+@font-face {
+  font-family: "FusionPixel10";
+  src: url("./fusion-pixel-10px-monospaced-cjk-3.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  unicode-range: U+9000-9FFF;
+}
