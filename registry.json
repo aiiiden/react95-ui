@@ -1181,6 +1181,7 @@
       "title": "Window",
       "dependencies": [],
       "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/icons.json",
         "https://aiiiden.github.io/react95-ui/r/theme.json",
         "https://aiiiden.github.io/react95-ui/r/utils.json"
       ],

@@ -1,10 +1,11 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
+import { PixelArt } from "./icons"
 
 type WindowProps = React.ComponentProps<"div"> & {
   /** Dims the title bar like an unfocused window */
   inactive?: boolean
-  /** Shows a resize grip in the bottom-right corner */
+  /** Shows a resize grip in the bottom-right corner. The status bar leaves room for it. */
   resizable?: boolean
 }
 
@@ -13,6 +14,7 @@ function Window({ className, inactive, resizable, children, ...props }: WindowPr
     <div
       data-slot="window"
       data-inactive={inactive ? "true" : undefined}
+      data-resizable={resizable ? "true" : undefined}
       className={cn("group/window relative flex flex-col bevel-window bg-material p-1 type-16 text-material-text", className)}
       {...props}
     >
@@ -82,27 +84,26 @@ function WindowContent({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function WindowStatusBar({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="window-statusbar" className={cn("mt-0.5 flex gap-0.5 type-12 [&>*]:bevel-status [&>*]:px-2 [&>*]:py-0.5 [&>*:first-child]:flex-1", className)} {...props} />
+  return <div data-slot="window-statusbar" className={cn("mt-0.5 flex gap-0.5 type-12 group-data-[resizable=true]/window:pr-[14px] [&>*]:bevel-status [&>*]:px-2 [&>*]:py-0.5 [&>*:first-child]:flex-1", className)} {...props} />
 }
+
+/* 12x12 corner grip: three diagonal ridges, each one light pixel then two shadow pixels,
+ * drawn on the pixel grid (no anti-aliased strokes). */
+const GRIP = Array.from({ length: 12 }, (_, y) =>
+  Array.from({ length: 12 }, (_, x) => {
+    const d = x + y - 11
+    return d < 0 ? "." : "LDD."[d % 4]
+  }).join("")
+)
 
 function WindowResizeGrip({ className }: { className?: string }) {
   return (
-    <svg
+    <PixelArt
       data-slot="window-resize-grip"
-      aria-hidden="true"
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      shapeRendering="crispEdges"
+      rows={GRIP}
+      palette={{ L: "var(--border-lightest)", D: "var(--border-dark)" }}
       className={cn("pointer-events-none absolute bottom-1 right-1", className)}
-    >
-      {[0, 4, 8].map((o) => (
-        <g key={o}>
-          <path d={`M${11 - o} ${o + 1}L${o + 1} 11`} stroke="var(--border-lightest)" />
-          <path d={`M${12 - o} ${o + 1}L${o + 1} 12`} stroke="var(--border-dark)" />
-        </g>
-      ))}
-    </svg>
+    />
   )
 }
 
