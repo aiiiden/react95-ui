@@ -62,7 +62,7 @@ function DatePicker({ value, defaultValue, onValueChange, onAccept, onCancel, ti
           <NumberInput aria-label="Year" className="w-24" value={y} min={1900} max={2999} onValueChange={(v) => go(v, m, day)} />
         </div>
         <div className="bevel-field bg-canvas text-canvas-text">
-          <div className="grid grid-cols-[repeat(7,30px)] bg-material-dark text-center type-12 text-material-text-invert">
+          <div className="grid grid-cols-[repeat(7,30px)] bg-material-dark text-center type-12 text-material-text">
             {weekdays.map((w, i) => (
               <span key={i} className="py-0.5">{w}</span>
             ))}

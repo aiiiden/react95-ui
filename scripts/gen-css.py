@@ -1,23 +1,165 @@
-"""Generate src/styles/themes.css.
-themes.css is parsed (not executed) from the react95 npm package theme files."""
-import re, sys, pathlib
-root = pathlib.Path(__file__).resolve().parent.parent
-# fonts.css is maintained by hand (font faces adapted from catarchy); this script only builds themes.
-src = pathlib.Path(sys.argv[1])
-def kebab(s): return re.sub(r"([A-Z])", lambda m: "-"+m.group(1).lower(), s)
-names = {"desktopBackground": "desktop-background"}
-blocks, listing = [], []
-for f in sorted(src.glob("*.js")):
-  if f.stem == "index": continue
-  txt = f.read_text()
-  pairs = re.findall(r'^\s*([A-Za-z]+):\s*"([^"]*)"', txt, re.M)
-  d = dict(pairs)
-  if "material" not in d: continue
-  name = d.pop("name", f.stem)
-  decl = "\n".join(f"  --{kebab(k)}: {v};" for k, v in d.items())
-  blocks.append(f'[data-r95-theme="{f.stem}"] {{\n{decl}\n}}')
-  listing.append(f.stem)
-hdr = "/* 59 themes ported from React95 (MIT). Apply with <html data-r95-theme=\"name\">. */\n"
-(root/"src/styles/themes.css").write_text(hdr + "\n\n".join(blocks) + "\n")
-(root/"src/showcase/theme-list.ts").write_text("export const themeNames = " + repr(listing).replace("'", '"') + " as const\n")
-print(len(listing), "themes")
+"""Generate src/styles/themes.css from scripts/react95-themes.json.
+
+react95-themes.json holds the 59 React95 themes exactly as published (react95@4.0.0, MIT).
+This script writes them as CSS and repairs color pairs that are hard or impossible to read:
+every token keeps its original value unless it fails one of the RULES below, and each
+change is listed in docs/theme-adjustments.md. Run: python3 scripts/gen-css.py
+"""
+import json, pathlib, re, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from theme_audit import colors_in, contrast, hexs, lum, rgb, block, ROOT
+
+T, D, G, E = 4.5, 2.0, 3.0, 1.15   # text, dimmed text, graphics, bevel edge
+# (token to adjust, the tokens it is drawn on, minimum contrast, what it is)
+RULES = [
+  ("material-text", ["material"], T, "text on windows"),
+  ("canvas-text", ["canvas"], T, "text in fields and lists"),
+  ("header-text", ["header-background"], T, "title bar text"),
+  ("header-not-active-text", ["header-not-active-background"], 2.5, "inactive title bar text"),
+  ("material-text-disabled", ["material"], D, "disabled text on windows"),
+  ("canvas-text-disabled", ["canvas"], D, "placeholder / disabled text in fields"),
+  ("checkmark", ["canvas"], G, "checkbox and radio mark"),
+  ("checkmark-disabled", ["material"], D, "disabled checkbox mark"),
+  ("progress", ["canvas"], G, "progress fill, switch on-state, chart bars"),
+  ("hover-background", ["canvas", "material"], 1.5, "selection highlight"),
+  ("canvas-text-invert", ["hover-background"], T, "text on a selected row"),
+  ("material-text-invert", ["hover-background"], T, "text on a highlighted menu item"),
+  ("anchor", ["material"], T, "links"),
+  ("anchor-visited", ["material"], T, "visited links"),
+  ("flat-dark", ["canvas"], D, "flat variant outline"),
+  ("focus-secondary", ["hover-background"], G, "focus ring on a selected item"),
+  # bevel edges may only move in their own direction: highlights lighter, shadows darker
+  ("border-lightest", ["material"], 1.3, "bevel highlight", "lighter"),
+  ("border-dark", ["material"], 1.6, "bevel inner shadow, engraved lines, skeleton", "darker"),
+  ("border-darkest", ["material"], 3.0, "bevel shadow", "darker"),
+  # these are backgrounds: when the text on them cannot be read, the background moves instead
+  ("tooltip", ["canvas-text"], T, "tooltip and balloon background"),
+  ("material-dark", ["material-text"], T, "calendar weekday row, avatar"),
+]
+
+SURFACE_MAY_MOVE = {"material-text", "canvas-text", "header-text"}
+
+def first(v):
+    c = colors_in(v); return c[0] if c else None
+
+def best_on(bg): return "#ffffff" if contrast(WHITE, bg) >= contrast(BLACK, bg) else "#000000"
+def mix(a, b, t): return tuple(round(a[i] + (b[i] - a[i]) * t) for i in range(3))
+BLACK, WHITE = (0, 0, 0), (255, 255, 255)
+
+def reachable(bg, need, direction=None):
+    """a rule cannot ask for more contrast than black or white can give against that background"""
+    ends = {"lighter": [WHITE], "darker": [BLACK]}.get(direction, [BLACK, WHITE])
+    return min(need, max(contrast(e, bg) for e in ends))
+
+def worst(fg, reqs): return min(contrast(fg, bg) / need for bg, need in reqs)
+
+def solve_t(fg, reqs, direction=None):
+    """smallest move of fg toward black or white that satisfies every (background, minimum) pair.
+    Returns (color, how far it moved 0..1, whether every pair is now satisfied)."""
+    reqs = [(bg, reachable(bg, need, direction) - 0.001) for bg, need in reqs]
+    if worst(fg, reqs) >= 1: return fg, 0.0, True
+    targets = {"lighter": [WHITE], "darker": [BLACK]}.get(direction, [BLACK, WHITE])
+    best = None
+    for step in range(1, 41):
+        for target in targets:
+            c = mix(fg, target, step / 40)
+            score = worst(c, reqs)
+            if score >= 1: return c, step / 40, True
+            if best is None or score > best[0]: best = (score, c)
+    return best[1], 1.0, False   # the backgrounds disagree: the closest compromise
+
+def solve(fg, reqs, direction=None): return solve_t(fg, reqs, direction)[0]
+
+def stops(v):
+    return re.findall(r"#[0-9a-fA-F]{3,6}\b|rgba?\([^)]+\)", v)
+
+def repair(tokens):
+    t = dict(tokens); changes = []
+    def setv(k, c, why):
+        new = hexs(c)
+        if rgb(t.get(k, "")) != c:
+            changes.append((k, tokens.get(k, "(new)"), new, why)); t[k] = new
+    # normalize values a browser would reject (React95 ships a few, e.g. rgb(0,62,1090))
+    for k, v in list(t.items()):
+        if "gradient" in v: continue
+        c = rgb(v)
+        if c and not re.fullmatch(r"#[0-9a-fA-F]{3,6}|[a-z]+", v.strip()):
+            ok = all(0 <= int(float(x)) <= 255 for x in re.findall(r"[\d.]+", v)[:3])
+            if not ok: setv(k, c, "invalid channel value, clamped to 0-255")
+    for k, bg_keys, need, what, *rest in RULES:
+        # a transparent bar shows the window behind it
+        fg = first(t.get(k, "")); bgs = [first(t["material"] if t.get(b, "").strip() == "transparent" else t.get(b, "")) for b in bg_keys]
+        if fg is None or any(b is None for b in bgs): continue
+        if "gradient" in t[k]: continue
+        new, moved, _ = solve_t(fg, [(b, need) for b in bgs], rest[0] if rest else None)
+        was = min(contrast(fg, b) for b in bgs)
+        # White text on a red window is that theme's whole character. When the text would have to
+        # travel far and a small nudge of the surface does the job, move the surface instead.
+        if new != fg and k in SURFACE_MAY_MOVE and len(bg_keys) == 1 and "gradient" not in t[bg_keys[0]] and t[bg_keys[0]].strip() != "transparent":
+            surface, surface_moved, ok = solve_t(bgs[0], [(fg, need)])
+            if ok and surface_moved < moved / 2:
+                setv(bg_keys[0], surface, f"{what}: {was:.2f}:1, needs {need}:1 (the surface moved, so the text keeps its color)")
+                continue
+        if new != fg:
+            setv(k, new, f"{what}: {was:.2f}:1 against {' / '.join(bg_keys)}, needs {need}:1")
+    # gradient title bars: the text must stay readable to the far end, so later stops move away from it
+    for bar, text, need in (("header-background", "header-text", T), ("header-not-active-background", "header-not-active-text", 2.5)):
+        v = t[bar]; fg = first(t[text])
+        if "gradient" not in v or fg is None: continue
+        out = v
+        for raw in stops(v)[1:]:
+            c = rgb(raw); new = solve(c, [(fg, min(need, 3.0))])
+            if new != c: out = out.replace(raw, hexs(new), 1)
+        if out != v:
+            changes.append((bar, tokens[bar], out, f"{text.replace('-', ' ')} unreadable at the far end of the gradient")); t[bar] = out
+    # derived tokens the original themes do not have
+    mat, cv = first(t["material"]), first(t["canvas"])
+    base = (168, 0, 0) if lum(mat) > 0.18 else (255, 107, 107)
+    danger = solve(base, [(mat, T)])
+    t["danger"] = hexs(danger)
+    t["danger-foreground"] = best_on(danger)
+    t["progress-foreground"] = best_on(first(t["progress"]))
+    t["desktop-foreground"] = best_on(first(t["desktop-background"]))
+    # pressed buttons are filled with a checkerboard: use the edge color that the label stays readable on
+    text = first(t["material-text"]); light, dark = first(t["border-lightest"]), first(t["border-dark"])
+    t["material-hatch"] = hexs(solve(light if contrast(text, light) >= contrast(text, dark) else dark, [(text, G)]))
+    t["success"] = hexs(solve((0, 122, 0) if lum(mat) > 0.18 else (95, 211, 95), [(mat, G)]))
+    if "gradient" in t["header-background"]: t["primary"] = hexs(first(t["header-background"]))
+    return t, changes
+
+def main():
+    data = json.loads((ROOT / "scripts/react95-themes.json").read_text())
+    blocks, report, total = [], [], 0
+    for name, tokens in data.items():
+        t, changes = repair(tokens); total += len(changes)
+        blocks.append(f'[data-r95-theme="{name}"] {{\n' + "\n".join(f"  --{k}: {v};" for k, v in t.items()) + "\n}")
+        if changes:
+            report.append(f"\n### {name}\n\n| Token | React95 | Here | Why |\n| --- | --- | --- | --- |")
+            report += [f"| `--{k}` | `{a}` | `{b}` | {why} |" for k, a, b, why in changes]
+    hdr = ('/* 59 themes ported from React95 (MIT). Apply with <html data-r95-theme="name">.\n'
+           f" * Generated by scripts/gen-css.py. {total} values differ from React95 so that text stays readable;\n"
+           " * each one is listed in docs/theme-adjustments.md. --danger, --danger-foreground, --progress-foreground, --desktop-foreground, --material-hatch, --success and\n"
+           " * (for gradient title bars) --primary are derived per theme. */\n")
+    (ROOT / "src/styles/themes.css").write_text(hdr + "\n\n".join(blocks) + "\n")
+    (ROOT / "src/showcase/theme-list.ts").write_text("export const themeNames = " + json.dumps(list(data)) + " as const\n")
+    (ROOT / "docs").mkdir(exist_ok=True)
+    changed = sum(1 for r in report if r.startswith("\n### "))
+    (ROOT / "docs/theme-adjustments.md").write_text(
+        "# Theme adjustments\n\n"
+        "The 59 themes come from React95. Some of them pair colors that are hard or impossible to read\n"
+        "(for example light gray text on a light gray window). `scripts/gen-css.py` keeps every original\n"
+        "value unless it fails one of these minimum contrast ratios, then moves that one color toward\n"
+        "black or white by the smallest step that passes.\n\n"
+        "| Kind | Minimum | Examples |\n| --- | --- | --- |\n"
+        "| Text | 4.5:1 | window text, field text, title bar text, selected rows, links |\n"
+        "| Graphics | 3:1 | check marks, progress fill, focus ring |\n"
+        "| Inactive title bar text | 2.5:1 | |\n"
+        "| Dimmed text and outlines | 2:1 | disabled text, placeholders, flat outline |\n"
+        "| Selection highlight | 1.5:1 | against the field and the window |\n"
+        "| Bevel edges | 1.3:1 highlight, 1.6:1 inner shadow, 3:1 outer shadow | against the window, the values the original Windows 95 palette clears |\n\n"
+        f"{total} values in {changed} of {len(data)} themes were changed. The originals are in `scripts/react95-themes.json`.\n"
+        + "\n".join(report) + "\n")
+    print(len(data), "themes |", total, "values adjusted in", changed, "themes")
+
+if __name__ == "__main__":
+    main()

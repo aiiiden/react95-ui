@@ -47,7 +47,7 @@ function Carousel({ opts, orientation = "horizontal", setApi, className, childre
 function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   const { viewportRef, orientation } = useCarousel()
   return (
-    <div ref={viewportRef} data-slot="carousel-viewport" className="min-w-0 flex-1 overflow-hidden bevel-field bg-canvas">
+    <div ref={viewportRef} data-slot="carousel-viewport" className="min-w-0 flex-1 overflow-hidden bevel-field bg-canvas text-canvas-text">
       <div data-slot="carousel-content" className={cn("flex", orientation === "vertical" && "flex-col", className)} {...props} />
     </div>
   )

@@ -63,7 +63,13 @@ Notes on the shadcn set:
 
 Each recipe is a 2px `border` (outer ring) plus an inset `box-shadow` (inner ring), as in React95's `createBorderStyles`. No component has a drop shadow: depth comes from the bevel alone. There are also `hatched` (2px checkerboard; set `--r95-hatch` for its color), `text-engraved` (disabled text), `scrollbar-r95` and `font-pixel-bold` (pixel fonts have no bold weight, so the glyph is double-struck one font pixel to the right).
 
-`src/styles/themes.css` contains all 59 React95 themes, generated from the npm package. Apply one with `<html data-r95-theme="vaporTeal">`.
+`src/styles/themes.css` contains all 59 React95 themes. Apply one with `<html data-r95-theme="vaporTeal">`.
+
+The themes are not copied blindly. Many of the originals pair colors that are hard or impossible to read (light gray text on a light gray window, a gradient title bar that turns the same color as its text). `scripts/gen-css.py` keeps every original value unless it fails a minimum contrast ratio, then moves that one color by the smallest step that passes: 4.5:1 for text, 3:1 for graphics, 2:1 for dimmed text. When the text would have to change character (white on a red window), the surface is nudged instead. 331 values in 56 themes differ from React95, and each one is listed with its reason in [`docs/theme-adjustments.md`](./docs/theme-adjustments.md). The originals stay in `scripts/react95-themes.json`.
+
+`scripts/theme_audit.py` checks every theme against the same rules and exits with the list of failures, if any.
+
+Tokens added on top of React95's, derived per theme so they always contrast with what they sit on: `--danger`, `--danger-foreground`, `--success`, `--progress-foreground` (label on a progress fill), `--desktop-foreground` (text on the desktop color), `--material-hatch` (the checkerboard on pressed buttons) and, for themes with a gradient title bar, a solid `--primary`.
 
 ### Type scale
 
@@ -157,6 +163,8 @@ npm run dev              # showcase at http://localhost:5173
 npm run build            # type-check + single-file build in dist/
 npm run registry:build   # writes public/r/*.json
 python3 scripts/gen-registry.py   # regenerate registry.json after adding a component
+python3 scripts/gen-css.py        # regenerate themes.css and docs/theme-adjustments.md
+python3 scripts/theme_audit.py    # contrast check of every theme
 ```
 
 ## Credits

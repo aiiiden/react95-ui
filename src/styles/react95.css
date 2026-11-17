@@ -52,16 +52,21 @@
 
   /* additions (not in React95): semantic status colors */
   --danger: #a80000;
+  --danger-foreground: #ffffff;
+  --progress-foreground: #ffffff;
+  --desktop-foreground: #ffffff;
+  --material-hatch: #fefefe;
   --success: #007a00;
 }
 
-/* Dark pair designed for this port: original 95 structure, night palette */
+/* Dark pair designed for this port: original 95 structure, night palette.
+   The window gray is light enough that both bevel shadows stay visible against it. */
 .dark {
   --anchor: #8fb0ff;
   --anchor-visited: #c59cff;
-  --border-lightest: #5b5f6b;
-  --border-light: #3f424b;
-  --border-dark: #17181c;
+  --border-lightest: #6e7381;
+  --border-light: #4d515c;
+  --border-dark: #101114;
   --border-darkest: #000000;
   --canvas: #15161a;
   --canvas-text: #e9e9ec;
@@ -71,23 +76,27 @@
   --checkmark: #e9e9ec;
   --checkmark-disabled: #6a6e7a;
   --desktop-background: #0b3b3b;
-  --flat-dark: #4a4d57;
+  --flat-dark: #5a5e6a;
   --flat-light: #2a2c33;
   --focus-secondary: #fefe03;
-  --header-background: #2b3cc4;
-  --header-not-active-background: #3d4049;
-  --header-not-active-text: #9a9ea8;
+  --header-background: #3b4bc8;
+  --header-not-active-background: #4a4e59;
+  --header-not-active-text: #b4b8c2;
   --header-text: #ffffff;
-  --hover-background: #2b3cc4;
-  --material: #2c2e35;
-  --material-dark: #23252b;
+  --hover-background: #3b4bc8;
+  --material: #3a3d46;
+  --material-dark: #2c2e35;
   --material-text: #e9e9ec;
   --material-text-disabled: #6a6e7a;
   --material-text-disabled-shadow: #000000;
   --material-text-invert: #ffffff;
   --progress: #4f6dff;
   --tooltip: #3a3520;
-  --danger: #ff6b6b;
+  --danger: #ff8585;
+  --danger-foreground: #000000;
+  --progress-foreground: #000000;
+  --desktop-foreground: #ffffff;
+  --material-hatch: #101114;
   --success: #5fd35f;
   color-scheme: dark;
 }
@@ -101,7 +110,7 @@
   --card-foreground: var(--material-text);
   --popover: var(--material);
   --popover-foreground: var(--material-text);
-  --primary: var(--header-background);
+  --primary: var(--header-background); /* themes with a gradient title bar set a solid --primary */
   --primary-foreground: var(--header-text);
   --secondary: var(--material);
   --secondary-foreground: var(--material-text);
@@ -134,9 +143,7 @@
   --color-flat-dark: var(--flat-dark);
   --color-flat-light: var(--flat-light);
   --color-focus-secondary: var(--focus-secondary);
-  --color-header: var(--header-background);
   --color-header-text: var(--header-text);
-  --color-header-inactive: var(--header-not-active-background);
   --color-header-inactive-text: var(--header-not-active-text);
   --color-hover: var(--hover-background);
   --color-material: var(--material);
@@ -145,8 +152,11 @@
   --color-material-text-disabled: var(--material-text-disabled);
   --color-material-text-invert: var(--material-text-invert);
   --color-progress: var(--progress);
+  --color-progress-foreground: var(--progress-foreground);
+  --color-desktop-foreground: var(--desktop-foreground);
   --color-tooltip: var(--tooltip);
   --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
   --color-success: var(--success);
 
   --color-background: var(--background);
@@ -265,11 +275,21 @@
   border-color: transparent;
   box-shadow: none;
 }
-/* 2px checkerboard (React95 createHatchedBackground) */
+/* Title bar fills. Some React95 themes use a gradient here, which `background-color`
+   cannot hold, so these set the `background` shorthand instead of being theme colors. */
+@utility bg-header {
+  background: var(--header-background);
+}
+@utility bg-header-inactive {
+  background: var(--header-not-active-background);
+}
+
+/* 2px checkerboard (React95 createHatchedBackground). The default color, --material-hatch, is
+   whichever bevel edge color keeps window text readable on top of it. */
 @utility hatched {
   background-image:
-    linear-gradient(45deg, var(--r95-hatch, var(--border-lightest)) 25%, transparent 25%, transparent 75%, var(--r95-hatch, var(--border-lightest)) 75%),
-    linear-gradient(45deg, var(--r95-hatch, var(--border-lightest)) 25%, transparent 25%, transparent 75%, var(--r95-hatch, var(--border-lightest)) 75%);
+    linear-gradient(45deg, var(--r95-hatch, var(--material-hatch)) 25%, transparent 25%, transparent 75%, var(--r95-hatch, var(--material-hatch)) 75%),
+    linear-gradient(45deg, var(--r95-hatch, var(--material-hatch)) 25%, transparent 25%, transparent 75%, var(--r95-hatch, var(--material-hatch)) 75%);
   background-size: 4px 4px;
   background-position: 0 0, 2px 2px;
 }

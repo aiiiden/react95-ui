@@ -50,7 +50,7 @@ function Calendar({
         <button type="button" aria-label={nextLabel} onClick={() => go(1)} className={nav}><TriangleRight /></button>
       </div>
       <div className="bevel-field bg-canvas text-canvas-text">
-        <div className="grid grid-cols-[repeat(7,30px)] bg-material-dark text-center type-12 text-material-text-invert">
+        <div className="grid grid-cols-[repeat(7,30px)] bg-material-dark text-center type-12 text-material-text">
           {weekdays.map((w, i) => (
             <span key={i} className="py-0.5">{w}</span>
           ))}

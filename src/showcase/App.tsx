@@ -161,7 +161,7 @@ export function App() {
               <Monitor width={200}>
                 <div className="flex h-full flex-col items-center justify-center gap-2 text-header-text">
                   <Hourglass size={32} />
-                  <span className="type-12 text-white">Please wait...</span>
+                  <span className="type-12 text-desktop-foreground">Please wait...</span>
                 </div>
               </Monitor>
             </div>

@@ -391,7 +391,7 @@ export function MoreSections() {
         <Spec name="AspectRatio">
           <div className="w-full max-w-xs">
             <AspectRatio ratio={16 / 9}>
-              <Frame variant="field" className="flex size-full items-center justify-center bg-desktop text-white">16 : 9</Frame>
+              <Frame variant="field" className="flex size-full items-center justify-center bg-desktop text-desktop-foreground">16 : 9</Frame>
             </AspectRatio>
           </div>
         </Spec>

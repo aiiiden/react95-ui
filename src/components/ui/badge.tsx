@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils"
 const badgeVariants = cva("inline-flex h-5 shrink-0 items-center gap-1 whitespace-nowrap px-1.5 type-12", {
   variants: {
     variant: {
-      default: "bg-header text-header-text",
+      default: "bg-primary text-primary-foreground",
       secondary: "bevel-status bg-material px-1 text-material-text",
-      destructive: "bg-danger text-canvas",
+      destructive: "bg-danger text-danger-foreground",
       outline: "border border-material-text text-material-text",
     },
   },

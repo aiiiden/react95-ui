@@ -24,7 +24,7 @@ function Progress({ value = 0, max = 100, variant = "default", hideValue, classN
         <>
           {!hideValue && <span className="absolute inset-0 flex items-center justify-center text-canvas-text">{label}</span>}
           <ProgressPrimitive.Indicator
-            className="absolute inset-0 flex items-center justify-center bg-progress text-canvas-text-invert"
+            className="absolute inset-0 flex items-center justify-center bg-progress text-progress-foreground"
             style={{ clipPath: `inset(0 ${100 - pct}% 0 0)` }}
           >
             {!hideValue && label}
