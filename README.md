@@ -1,5 +1,7 @@
 # React95 UI
 
+**[Live showcase](https://aiiiden.github.io/react95-ui/)**
+
 A port of [React95](https://github.com/arturbien/React95) (Windows 95 components for React) to **Tailwind CSS v4 + shadcn/ui conventions**.
 
 - No styled-components: styles are Tailwind utilities and CSS variables
@@ -76,18 +78,24 @@ Pixel fonts only look sharp at their native size or a whole multiple of it. Each
 
 ## Install from the registry
 
-Serve `public/r` (after `npm run registry:build`) from any static host, then in your app's `components.json`:
+The registry is published at `https://aiiiden.github.io/react95-ui/r/`. Add it to your app's `components.json`:
 
 ```json
 {
   "registries": {
-    "@react95": "https://YOUR-HOST/r/{name}.json"
+    "@react95": "https://aiiiden.github.io/react95-ui/r/{name}.json"
   }
 }
 ```
 
 ```bash
 npx shadcn@latest add @react95/theme @react95/button @react95/window
+```
+
+Or install one item by URL, with no configuration:
+
+```bash
+npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/button.json
 ```
 
 Then import the theme once, for example in `src/index.css`:
@@ -121,8 +129,8 @@ Two ways to load it:
 ```
 
 ```html
-<!-- 2. or host the folder anywhere and link it -->
-<link rel="stylesheet" href="https://YOUR-HOST/fonts/fonts.css" />
+<!-- 2. or link the hosted copy (or host the folder yourself) -->
+<link rel="stylesheet" href="https://aiiiden.github.io/react95-ui/fonts/fonts.css" />
 ```
 
 Both fonts are SIL OFL 1.1. Keep `LICENSE-*.txt` next to the font files.

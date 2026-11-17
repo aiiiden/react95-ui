@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "react95",
-  "homepage": "https://github.com/arturbien/React95",
+  "homepage": "https://aiiiden.github.io/react95-ui/",
   "items": [
     {
       "name": "utils",

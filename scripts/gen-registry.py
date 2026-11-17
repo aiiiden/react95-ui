@@ -36,6 +36,6 @@ for f in sorted(ui.glob("*.tsx")):
     "registryDependencies": sorted(set(reg)),
     "files": [{"path": f"src/components/ui/{f.name}", "type": "registry:ui"}],
   })
-reg = {"$schema": "https://ui.shadcn.com/schema/registry.json", "name": "react95", "homepage": "https://github.com/arturbien/React95", "items": items}
+reg = {"$schema": "https://ui.shadcn.com/schema/registry.json", "name": "react95", "homepage": "https://aiiiden.github.io/react95-ui/", "items": items}
 (root / "registry.json").write_text(json.dumps(reg, indent=2, ensure_ascii=False) + "\n")
 print(len(items) - 2, "ui items")
