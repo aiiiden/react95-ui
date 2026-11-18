@@ -35,7 +35,7 @@ function Sidebar({ className, collapsible = "offcanvas", side = "left", ...props
       data-state={open ? "expanded" : "collapsed"}
       hidden={hidden}
       className={cn(
-        "group/pane flex shrink-0 flex-col bevel-field bg-canvas text-canvas-text",
+        "group/pane flex shrink-0 flex-col bevel-field bg-canvas p-0.5 text-canvas-text",
         open || collapsible === "none" ? "w-48" : "w-11",
         side === "right" && "order-last",
         className

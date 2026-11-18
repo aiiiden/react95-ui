@@ -18,7 +18,7 @@ function CommandInput({ className, ...props }: React.ComponentProps<typeof Comma
 }
 
 function CommandList({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.List>) {
-  return <CommandPrimitive.List data-slot="command-list" className={cn("scrollbar-r95 max-h-56 overflow-y-auto bevel-field bg-canvas text-canvas-text", className)} {...props} />
+  return <CommandPrimitive.List data-slot="command-list" className={cn("scrollbar-r95 max-h-56 overflow-y-auto bevel-field bg-canvas p-0.5 text-canvas-text", className)} {...props} />
 }
 
 function CommandEmpty({ className, ...props }: React.ComponentProps<typeof CommandPrimitive.Empty>) {

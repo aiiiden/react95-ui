@@ -238,6 +238,8 @@
   --r95-bri: transparent;
   --r95-bro: var(--border-lightest);
 }
+/* The inner ring of a field is an inset shadow, so children that fill the box edge to edge
+   (list rows, a scrollbar, a spin button) would cover it. Give such fields p-0.5. */
 @utility bevel-field {
   @apply bevel;
   --r95-tlo: var(--border-dark);

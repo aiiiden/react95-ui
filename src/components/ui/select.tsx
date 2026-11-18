@@ -12,7 +12,7 @@ function SelectTrigger({ className, children, variant = "default", ...props }: R
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        "group inline-flex h-9 w-48 items-stretch bg-canvas p-0 text-left type-16 text-canvas-text outline-none disabled:bg-material disabled:text-engraved",
+        "group inline-flex h-9 w-48 items-stretch bg-canvas p-0.5 text-left type-16 text-canvas-text outline-none disabled:bg-material disabled:text-engraved",
         variant === "default" ? "bevel-field" : "bevel-flat",
         className
       )}

@@ -1,10 +1,15 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 
+/* The sunken edge is 4px: a 2px border and a 2px inner ring drawn as an inset shadow. Content
+ * would paint over that inner ring, so the frame keeps 2px of padding and the scrolling
+ * happens in a box inside it. `containerClassName` sizes the frame (h-64, max-h-80, ...). */
 function Table({ className, containerClassName, ...props }: React.ComponentProps<"table"> & { containerClassName?: string }) {
   return (
-    <div data-slot="table-container" className={cn("scrollbar-r95 relative w-full overflow-auto bevel-field bg-canvas", containerClassName)}>
-      <table data-slot="table" className={cn("w-full border-collapse type-16 text-canvas-text", className)} {...props} />
+    <div data-slot="table-container" className={cn("relative flex w-full flex-col bevel-field bg-canvas p-0.5", containerClassName)}>
+      <div data-slot="table-scroll" className="scrollbar-r95 min-h-0 flex-1 overflow-auto">
+        <table data-slot="table" className={cn("w-full border-collapse type-16 text-canvas-text", className)} {...props} />
+      </div>
     </div>
   )
 }

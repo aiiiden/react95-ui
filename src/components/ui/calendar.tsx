@@ -49,7 +49,7 @@ function Calendar({
         <div aria-live="polite" className="flex-1 text-center">{shown.toLocaleString(locale, { year: "numeric", month: "long" })}</div>
         <button type="button" aria-label={nextLabel} onClick={() => go(1)} className={nav}><TriangleRight /></button>
       </div>
-      <div className="bevel-field bg-canvas text-canvas-text">
+      <div className="bevel-field bg-canvas p-0.5 text-canvas-text">
         <div className="grid grid-cols-[repeat(7,30px)] bg-material-dark text-center type-12 text-material-text">
           {weekdays.map((w, i) => (
             <span key={i} className="py-0.5">{w}</span>

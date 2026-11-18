@@ -14,7 +14,7 @@ function Monitor({ children, screenClassName, width = 195, className, ...props }
   return (
     <div data-slot="monitor" className={cn("inline-flex flex-col items-center type-16", className)} {...props}>
       <div className="relative bevel-window bg-material p-3 pb-4">
-        <div className={cn("relative overflow-hidden bevel-field bg-desktop", screenClassName)} style={{ width, height: Math.round((width * 3) / 4) }}>
+        <div className={cn("relative overflow-hidden bevel-field bg-desktop p-0.5", screenClassName)} style={{ width, height: Math.round((width * 3) / 4) }}>
           {children}
         </div>
         <span aria-hidden="true" className="absolute bottom-1.5 right-3 h-1 w-2.5 border border-border-darkest bg-success" />

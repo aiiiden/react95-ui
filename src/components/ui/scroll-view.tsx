@@ -15,9 +15,9 @@ function ScrollView({ variant = "default", noPadding, className, children, ...pr
       data-slot="scroll-view"
       className={cn(
         "relative type-16",
-        variant === "default" && "bevel-field bg-canvas text-canvas-text",
-        variant === "flat" && "bevel-flat bg-canvas text-canvas-text",
-        variant === "well" && "bevel-field bg-material text-material-text",
+        variant === "default" && "bevel-field bg-canvas p-0.5 text-canvas-text",
+        variant === "flat" && "bevel-flat bg-canvas p-0.5 text-canvas-text",
+        variant === "well" && "bevel-field bg-material p-0.5 text-material-text",
         className
       )}
       {...props}

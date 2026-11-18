@@ -35,7 +35,7 @@ function Combobox({ options, value, defaultValue = "", onValueChange, placeholde
           aria-label={props["aria-label"]}
           disabled={disabled}
           data-slot="combobox"
-          className={cn("group inline-flex h-9 w-48 items-stretch bevel-field bg-canvas p-0 text-left type-16 text-canvas-text outline-none disabled:bg-material disabled:text-engraved", className)}
+          className={cn("group inline-flex h-9 w-48 items-stretch bevel-field bg-canvas p-0.5 text-left type-16 text-canvas-text outline-none disabled:bg-material disabled:text-engraved", className)}
         >
           <span className="flex min-w-0 flex-1 items-center px-2">
             <span className={cn("truncate group-focus-visible:bg-hover group-focus-visible:text-canvas-text-invert", !selected && "text-canvas-text-disabled")}>{selected?.label ?? placeholder}</span>

@@ -13,7 +13,7 @@ function ResizablePanelGroup({ className, ...props }: React.ComponentProps<typeo
 
 /** `variant="plain"` drops the sunken frame, for panes that bring their own (a Table, a ScrollView) */
 function ResizablePanel({ className, variant = "field", ...props }: React.ComponentProps<typeof Panel> & { variant?: "field" | "plain" }) {
-  return <Panel data-slot="resizable-panel" className={cn("min-h-0 min-w-0", variant === "field" && "bevel-field bg-canvas text-canvas-text", className)} {...props} />
+  return <Panel data-slot="resizable-panel" className={cn("min-h-0 min-w-0", variant === "field" && "bevel-field bg-canvas p-0.5 text-canvas-text", className)} {...props} />
 }
 
 /* 4px of bare material to grab. Keyboard focus shows as a checkerboard, like a dragged splitter. */

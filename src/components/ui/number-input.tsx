@@ -33,7 +33,7 @@ function NumberInput({ value, defaultValue = 0, onValueChange, min, max, step = 
   return (
     <div
       data-slot="number-input"
-      className={cn("inline-flex h-9 w-28 items-stretch bg-canvas", variant === "default" ? "bevel-field" : "bevel-flat", disabled && "bg-material", className)}
+      className={cn("inline-flex h-9 w-28 items-stretch bg-canvas p-0.5", variant === "default" ? "bevel-field" : "bevel-flat", disabled && "bg-material", className)}
     >
       <input
         type="text"
