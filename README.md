@@ -121,7 +121,7 @@ The theme installs as plain files and needs no shadcn setup. Components need a `
 
 ### Radix UI or Base UI
 
-Every component exists in two versions that look and measure the same. The addresses above install the Radix UI version. The namespace address picks the version from your project's style. To choose by hand, use `/r/{name}.json` for Radix UI and `/r/base/{name}.json` for Base UI:
+Every component exists in two versions that look and measure the same. The GitHub and URL addresses above install the Radix UI version, and the namespace address picks the version from your project's style. To choose by hand, use `/r/{name}.json` for Radix UI and `/r/base/{name}.json` for Base UI:
 
 ```bash
 npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json
