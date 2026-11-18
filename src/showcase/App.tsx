@@ -156,7 +156,7 @@ export function App() {
                 </p>
                 <p className="type-12">
                   Every component comes in two versions. You are looking at the <span className="font-pixel-bold">{isBase ? "Base UI" : "Radix UI"}</span> build:{" "}
-                  <Anchor href={isBase ? "../" : "./base/"}>switch to {isBase ? "Radix UI" : "Base UI"}</Anchor>.
+                  <Anchor href={isBase ? "https://aiiiden.github.io/react95-ui/" : "https://aiiiden.github.io/react95-ui/base/"}>switch to {isBase ? "Radix UI" : "Base UI"}</Anchor>.
                 </p>
                 <Frame variant="field" className="scrollbar-r95 overflow-x-auto p-3 type-12">
                   <pre>{`${isBase ? "npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json" : "npx shadcn@latest add aiiiden/react95-ui/button aiiiden/react95-ui/window"}
