@@ -66,6 +66,19 @@ Each recipe is a 2px `border` (outer ring) plus an inset `box-shadow` (inner rin
 
 `src/styles/themes.css` contains all 59 React95 themes. Apply one with `<html data-r95-theme="vaporTeal">`.
 
+The theme also installs `src/lib/react95-theme.ts`, generated from the same list as the CSS. It makes `data-r95-theme` autocomplete the 59 names in JSX (a name of your own is still accepted), and exports the list and two helpers:
+
+```tsx
+import { setTheme, getTheme, themeNames, type R95Theme } from "@/lib/react95-theme"
+
+<html data-r95-theme="vaporTeal">   {/* suggestions as you type */}
+
+setTheme("matrix")   // on <html>; pass an element as the second argument for a subtree
+setTheme(null)       // back to the default palette
+```
+
+A plain `index.html` is outside TypeScript, so there is no completion there: set the attribute from code with `setTheme`.
+
 The themes are not copied blindly. Many of the originals pair colors that are hard or impossible to read (light gray text on a light gray window, a gradient title bar that turns the same color as its text). `scripts/gen-css.py` keeps every original value unless it fails a minimum contrast ratio, then moves that one color by the smallest step that passes: 4.5:1 for text, 3:1 for graphics, 2:1 for dimmed text. When the text would have to change character (white on a red window), the surface is nudged instead. 331 values in 56 themes differ from React95, and each one is listed with its reason in [`docs/theme-adjustments.md`](./docs/theme-adjustments.md). The originals stay in `scripts/react95-themes.json`.
 
 `scripts/theme_audit.py` checks every theme against the same rules and exits with the list of failures, if any.

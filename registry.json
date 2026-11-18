@@ -22,7 +22,7 @@
       "name": "theme",
       "type": "registry:item",
       "title": "React95 theme",
-      "description": "Tokens, bevel utilities, pixel type utilities and 59 React95 themes for Tailwind v4. Fonts are not included: see the README for the recommended pixel fonts.",
+      "description": "Tokens, bevel utilities, pixel type utilities and 59 React95 themes for Tailwind v4, with typed theme names. Fonts are not included: see the README for the recommended pixel fonts.",
       "files": [
         {
           "path": "src/styles/react95.css",
@@ -33,6 +33,11 @@
           "path": "src/styles/themes.css",
           "type": "registry:file",
           "target": "src/styles/themes.css"
+        },
+        {
+          "path": "src/lib/react95-theme.ts",
+          "type": "registry:file",
+          "target": "src/lib/react95-theme.ts"
         }
       ]
     },

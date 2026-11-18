@@ -24,10 +24,12 @@ def build(name, base_url, pick, note):
     # project setup and warns that existing CSS variables and components will be overwritten
     "type": "registry:item",
     "title": "React95 theme",
-    "description": "Tokens, bevel utilities, pixel type utilities and 59 React95 themes for Tailwind v4. Fonts are not included: see the README for the recommended pixel fonts.",
+    "description": "Tokens, bevel utilities, pixel type utilities and 59 React95 themes for Tailwind v4, with typed theme names. Fonts are not included: see the README for the recommended pixel fonts.",
     "files": [
       {"path": "src/styles/react95.css", "type": "registry:file", "target": "src/styles/react95.css"},
       {"path": "src/styles/themes.css", "type": "registry:file", "target": "src/styles/themes.css"},
+      # theme names as a type: autocomplete for data-r95-theme in JSX, plus setTheme()
+      {"path": "src/lib/react95-theme.ts", "type": "registry:file", "target": "src/lib/react95-theme.ts"},
     ],
   }]
   for shared in sorted(ui.glob("*.tsx")):

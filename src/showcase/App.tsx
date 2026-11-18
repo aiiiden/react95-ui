@@ -1,6 +1,6 @@
 import * as React from "react"
 import { slot, one, mixed, isBase } from "./lib"
-import { themeNames } from "./theme-list"
+import { setTheme as applyTheme, themeNames } from "@/lib/react95-theme"
 import { DemoWindow, Spec } from "./parts"
 import { Toaster } from "@/components/ui/sonner"
 import { MoreSections } from "./more"
@@ -59,8 +59,7 @@ function useTheme() {
     mq.addEventListener("change", apply)
     const obs = new MutationObserver(apply)
     obs.observe(root, { attributes: true, attributeFilter: ["data-theme"] })
-    if (theme) root.setAttribute("data-r95-theme", theme)
-    else root.removeAttribute("data-r95-theme")
+    applyTheme(theme || null)
     try { localStorage.setItem("r95-mode", mode); localStorage.setItem("r95-theme", theme) } catch { /* storage blocked */ }
     // browser chrome (address bar, in-app browser bars) takes the window color of the current theme
     const material = getComputedStyle(root).getPropertyValue("--material").trim()
