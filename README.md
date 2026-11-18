@@ -104,10 +104,12 @@ npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/button.json
 ```json
 {
   "registries": {
-    "@react95-ui": "https://aiiiden.github.io/react95-ui/r/{name}.json"
+    "@react95-ui": "https://aiiiden.github.io/react95-ui/r/{style}/{name}.json"
   }
 }
 ```
+
+The CLI fills `{style}` with the `style` in your `components.json`. A project set up on Base UI (`base-nova`, `base-vega`, ...) gets the Base UI version of each component, and any other project gets the Radix UI version.
 
 ```bash
 npx shadcn@latest add @react95-ui/theme @react95-ui/button @react95-ui/window
@@ -119,19 +121,12 @@ The theme installs as plain files and needs no shadcn setup. Components need a `
 
 ### Radix UI or Base UI
 
-Every component exists in two versions that look and measure the same. The addresses above install the Radix UI version. The Base UI version lives under `/r/base/`:
+Every component exists in two versions that look and measure the same. The addresses above install the Radix UI version. The namespace address picks the version from your project's style. To choose by hand, use `/r/{name}.json` for Radix UI and `/r/base/{name}.json` for Base UI:
 
 ```bash
 npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json
 ```
 
-```json
-{
-  "registries": {
-    "@react95-ui": "https://aiiiden.github.io/react95-ui/r/base/{name}.json"
-  }
-}
-```
 
 Items in one registry only depend on items in the same registry, so a project never ends up with both libraries unless you mix the addresses yourself. 34 of the 65 files differ; the rest (Window, Table, Calendar, ...) do not use either library and are the same file in both. Drawer and Command are built on `vaul` and `cmdk` in both versions.
 
@@ -199,7 +194,7 @@ npm run dev              # showcase at http://localhost:5173
 npm run dev:base         # the same showcase on the Base UI components
 npm run build            # type-check + single-file build in dist/
 npm run build:base       # the Base UI showcase in dist/base/
-npm run registry:build   # writes public/r/*.json and public/r/base/*.json
+npm run registry:build   # writes public/r/*.json, public/r/base/*.json and a copy per shadcn style name
 python3 scripts/gen-registry.py   # regenerate registry.json and registry-base.json after adding a component
 python3 scripts/gen-css.py        # regenerate themes.css and docs/theme-adjustments.md
 python3 scripts/theme_audit.py    # contrast check of every theme

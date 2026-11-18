@@ -7,7 +7,7 @@
     "dev": "vite",
     "typecheck": "tsc -b",
     "build": "tsc -b && vite build",
-    "registry:build": "python3 scripts/gen-registry.py && shadcn build && shadcn build registry-base.json -o public/r/base",
+    "registry:build": "python3 scripts/gen-registry.py && shadcn build && shadcn build registry-base.json -o public/r/base && python3 scripts/gen-styles.py",
     "build:site": "npm run registry:build && npm run build && npm run build:base && cp -r src/assets/fonts dist/fonts",
     "build:base": "R95_LIB=base vite build",
     "dev:base": "R95_LIB=base vite"
