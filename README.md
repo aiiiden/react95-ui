@@ -115,6 +115,8 @@ npx shadcn@latest add @react95-ui/theme @react95-ui/button @react95-ui/window
 
 The full item list is in [`registry.json`](./registry.json).
 
+The theme installs as plain files and needs no shadcn setup. Components need a `components.json`; if the CLI offers to create one and asks for a component library, pick **Radix UI**. These components are written against the `radix-ui` package, which they install themselves, so they work under any choice, but stock shadcn components you add later follow that setting and Radix keeps the two on one library.
+
 Then import the theme once, for example in `src/index.css`:
 
 ```css

@@ -14,7 +14,9 @@ items = [{
   "files": [{"path": "src/lib/utils.ts", "type": "registry:lib"}],
 }, {
   "name": "theme",
-  "type": "registry:style",
+  # registry:item, not registry:style: the CLI treats a style as a replacement for the whole
+  # project setup and warns that existing CSS variables and components will be overwritten
+  "type": "registry:item",
   "title": "React95 theme",
   "description": "Tokens, bevel utilities, pixel type utilities and 59 React95 themes for Tailwind v4. Fonts are not included: see the README for the recommended pixel fonts.",
   "files": [
