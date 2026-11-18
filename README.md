@@ -213,6 +213,8 @@ python3 scripts/gen-css.py        # regenerate themes.css and docs/theme-adjustm
 python3 scripts/theme_audit.py    # contrast check of every theme
 ```
 
+Each section of the showcase has a Code button that shows that section's own source. It is taken from the showcase files at build time (`specCode` in `vite.config.ts`), so it is always the code that is running, written for whichever library the page was built on.
+
 Components that depend on Radix live in `src/components/ui/` and have a Base UI twin with the same name in `src/components/ui-base/`. When you change one, change the other. `R95_LIB=base` makes Vite resolve every component to its twin, so both builds render the same showcase source; the few props that differ between the libraries are wrapped in `src/showcase/lib.ts`.
 
 ## Credits
