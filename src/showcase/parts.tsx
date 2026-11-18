@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { Frame } from "@/components/ui/frame"
+import { Highlight } from "./highlight"
 import { Separator } from "@/components/ui/separator"
 import { Window, WindowButton, WindowContent, WindowControls, WindowHeader, WindowStatusBar, WindowTitle } from "@/components/ui/window"
 
@@ -34,7 +35,7 @@ export function Spec({ name, children, className, code }: { name: string; childr
       <div className="flex min-w-0 flex-wrap items-center gap-3">{children}</div>
       {open && code && (
         <Frame data-slot="spec-code" variant="field" className="scrollbar-r95 max-h-80 min-w-0 overflow-auto p-3 type-12">
-          <pre>{code}</pre>
+          <pre><Highlight code={code} /></pre>
         </Frame>
       )}
     </section>
