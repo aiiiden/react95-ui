@@ -1,4 +1,5 @@
 import * as React from "react"
+import { slot, one, isBase } from "./lib"
 import { useForm } from "react-hook-form"
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, Pie, PieChart, Tooltip as ChartTooltip, XAxis, YAxis } from "recharts"
 import { DemoWindow, Spec } from "./parts"
@@ -120,7 +121,7 @@ export function MoreSections() {
       <DemoWindow title="Dialogs · Overlays (6)" status={<span>Dialog · AlertDialog · Sheet · Drawer · Popover · HoverCard</span>}>
         <Spec name="Dialog · AlertDialog">
           <Dialog>
-            <DialogTrigger asChild><Button>Open dialog</Button></DialogTrigger>
+            <DialogTrigger {...slot(<Button>Open dialog</Button>)} />
             <DialogContent>
               <DialogHeader closeLabel="Close"><DialogTitle>Properties</DialogTitle></DialogHeader>
               <DialogBody>
@@ -128,13 +129,13 @@ export function MoreSections() {
                 <Input defaultValue="README.TXT" aria-label="File name" />
               </DialogBody>
               <DialogFooter>
-                <DialogClose asChild><Button>Cancel</Button></DialogClose>
-                <DialogClose asChild><Button primary>OK</Button></DialogClose>
+                <DialogClose {...slot(<Button>Cancel</Button>)} />
+                <DialogClose {...slot(<Button primary>OK</Button>)} />
               </DialogFooter>
             </DialogContent>
           </Dialog>
           <AlertDialog>
-            <AlertDialogTrigger asChild><Button>Delete file</Button></AlertDialogTrigger>
+            <AlertDialogTrigger {...slot(<Button>Delete file</Button>)} />
             <AlertDialogContent>
               <AlertDialogHeader><AlertDialogTitle>Confirm File Delete</AlertDialogTitle></AlertDialogHeader>
               <AlertDialogBody icon="question">
@@ -149,14 +150,14 @@ export function MoreSections() {
         </Spec>
         <Spec name="Sheet · Drawer">
           <Sheet>
-            <SheetTrigger asChild><Button>Open sheet</Button></SheetTrigger>
+            <SheetTrigger {...slot(<Button>Open sheet</Button>)} />
             <SheetContent>
               <SheetHeader closeLabel="Close"><SheetTitle>Details</SheetTitle></SheetHeader>
               <SheetBody>
                 <SheetDescription>A panel docked to the edge of the screen.</SheetDescription>
                 <Label><Switch defaultChecked /> Show status bar</Label>
               </SheetBody>
-              <SheetFooter><SheetClose asChild><Button primary>OK</Button></SheetClose></SheetFooter>
+              <SheetFooter><SheetClose {...slot(<Button primary>OK</Button>)} /></SheetFooter>
             </SheetContent>
           </Sheet>
           <Drawer>
@@ -170,16 +171,14 @@ export function MoreSections() {
         </Spec>
         <Spec name="Popover · HoverCard">
           <Popover>
-            <PopoverTrigger asChild><Button>Open popover</Button></PopoverTrigger>
+            <PopoverTrigger {...slot(<Button>Open popover</Button>)} />
             <PopoverContent className="flex flex-col gap-2">
               <p>A small panel anchored to its button.</p>
               <Input placeholder="File name" aria-label="File name" />
             </PopoverContent>
           </Popover>
           <HoverCard>
-            <HoverCardTrigger asChild>
-              <button type="button" className="text-anchor underline underline-offset-2">react95.css</button>
-            </HoverCardTrigger>
+            <HoverCardTrigger {...slot(<button type="button" className="text-anchor underline underline-offset-2">react95.css</button>)} />
             <HoverCardContent>CSS Document · 14 KB</HoverCardContent>
           </HoverCard>
           <span className="type-12">Hover the file name</span>
@@ -224,9 +223,7 @@ export function MoreSections() {
         </Spec>
         <Spec name="ContextMenu">
           <ContextMenu>
-            <ContextMenuTrigger asChild>
-              <Frame variant="field" className="flex h-20 w-full select-none items-center justify-center px-3 text-center">Right-click or long-press here</Frame>
-            </ContextMenuTrigger>
+            <ContextMenuTrigger {...slot(<Frame variant="field" className="flex h-20 w-full select-none items-center justify-center px-3 text-center">Right-click or long-press here</Frame>)} />
             <ContextMenuContent>
               <ContextMenuItem>New Folder</ContextMenuItem>
               <ContextMenuItem>Rename <ContextMenuShortcut>F2</ContextMenuShortcut></ContextMenuItem>
@@ -289,7 +286,7 @@ export function MoreSections() {
           </Spec>
           <Spec name="Toggle · ToggleGroup">
             <Toggle size="icon" aria-label="Bold" defaultPressed className="font-pixel-bold">B</Toggle>
-            <ToggleGroup type="single" defaultValue="left" aria-label="View mode">
+            <ToggleGroup {...one({ defaultValue: "left" })} aria-label="View mode">
               <ToggleGroupItem value="left">Left</ToggleGroupItem>
               <ToggleGroupItem value="center">Center</ToggleGroupItem>
               <ToggleGroupItem value="right">Right</ToggleGroupItem>
@@ -358,7 +355,7 @@ export function MoreSections() {
 
       <DemoWindow title="Structure (6)" status={<span>Accordion · Collapsible · Card · Resizable · Sidebar · AspectRatio</span>}>
         <Spec name="Accordion">
-          <Accordion type="single" collapsible defaultValue="general" className="w-full">
+          <Accordion {...one({ defaultValue: "general" })} {...(!isBase && { collapsible: true })} className="w-full">
             {["General", "Network", "Sharing"].map((n) => (
               <AccordionItem key={n} value={n.toLowerCase()}>
                 <AccordionTrigger>{n}</AccordionTrigger>
@@ -369,8 +366,8 @@ export function MoreSections() {
         </Spec>
         <Spec name="Collapsible">
           <Collapsible open={open} onOpenChange={setOpen} className="flex w-full flex-col items-start gap-2">
-            <CollapsibleTrigger asChild><Button>{open ? "Hide details" : "Show details"}</Button></CollapsibleTrigger>
-            <CollapsibleContent asChild><Frame variant="field" className="w-full p-2">More text appears here when the section is open.</Frame></CollapsibleContent>
+            <CollapsibleTrigger {...slot(<Button>{open ? "Hide details" : "Show details"}</Button>)} />
+            <CollapsibleContent {...slot(<Frame variant="field" className="w-full p-2">More text appears here when the section is open.</Frame>)} />
           </Collapsible>
         </Spec>
         <Spec name="Card">

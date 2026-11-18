@@ -1,11 +1,11 @@
 # React95 UI
 
-**[Live showcase](https://aiiiden.github.io/react95-ui/)**
+**[Live showcase](https://aiiiden.github.io/react95-ui/)** · [the same page on Base UI](https://aiiiden.github.io/react95-ui/base/)
 
 A port of [React95](https://github.com/arturbien/React95) (Windows 95 components for React) to **Tailwind CSS v4 + shadcn/ui conventions**.
 
 - No styled-components: styles are Tailwind utilities and CSS variables
-- Behavior and accessibility from [Radix UI](https://www.radix-ui.com/) (`radix-ui` package)
+- Behavior and accessibility from [Radix UI](https://www.radix-ui.com/) or [Base UI](https://base-ui.com/): every component comes in both versions, see [Radix UI or Base UI](#radix-ui-or-base-ui)
 - Variants with `class-variance-authority`, class merging with `cn()`
 - Distributed as a shadcn registry: you copy the source into your project and own it
 - Optional pixel fonts (UnifontExMono 16px, Fusion Pixel 12px / 10px) with an add-on for Hangul, kana and CJK ideographs, kept outside the registry: see [Fonts](#fonts) (setup adapted from [catarchy](https://github.com/catarchy-net/catarchy))
@@ -115,7 +115,40 @@ npx shadcn@latest add @react95-ui/theme @react95-ui/button @react95-ui/window
 
 The full item list is in [`registry.json`](./registry.json).
 
-The theme installs as plain files and needs no shadcn setup. Components need a `components.json`; if the CLI offers to create one and asks for a component library, pick **Radix UI**. These components are written against the `radix-ui` package, which they install themselves, so they work under any choice, but stock shadcn components you add later follow that setting and Radix keeps the two on one library.
+The theme installs as plain files and needs no shadcn setup. Components need a `components.json`; if the CLI offers to create one and asks for a component library, pick the one you are installing from here (Radix UI for the addresses above), so stock shadcn components you add later use the same library.
+
+### Radix UI or Base UI
+
+Every component exists in two versions that look and measure the same. The addresses above install the Radix UI version. The Base UI version lives under `/r/base/`:
+
+```bash
+npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json
+```
+
+```json
+{
+  "registries": {
+    "@react95-ui": "https://aiiiden.github.io/react95-ui/r/base/{name}.json"
+  }
+}
+```
+
+Items in one registry only depend on items in the same registry, so a project never ends up with both libraries unless you mix the addresses yourself. 34 of the 65 files differ; the rest (Window, Table, Calendar, ...) do not use either library and are the same file in both. Drawer and Command are built on `vaul` and `cmdk` in both versions.
+
+The Base UI version follows Base UI's conventions, as shadcn's own Base UI components do:
+
+| | Radix UI version | Base UI version |
+| --- | --- | --- |
+| Compose a part with your element | `<DialogTrigger asChild><Button /></DialogTrigger>` | `<DialogTrigger render={<Button />} />` |
+| One-of-many groups (Accordion, ToggleGroup) | `type="single"`, `value="a"` | `value={["a"]}`; add `multiple` for several |
+| Mixed checkbox | `checked="indeterminate"` | `indeterminate` |
+| Menu item action | `onSelect` | `onClick` |
+| Slider value | always an array | a number, or an array for several thumbs |
+| Tooltip and HoverCard delay | `delayDuration`, `openDelay` | `delay` |
+| Popover anchored elsewhere | `<PopoverAnchor>` | `anchor` on `PopoverContent` |
+| State selectors | `data-[state=open]`, `data-[state=checked]` | `data-[popup-open]`, `data-[checked]`, `data-[pressed]`, `data-[active]` |
+
+Two things are evened out so the versions stay interchangeable: `SelectValue` shows the selected item's text in both (Base UI alone would show the raw value unless you pass `items`), and slider thumbs travel the full width of the track in both.
 
 Then import the theme once, for example in `src/index.css`:
 
@@ -163,12 +196,16 @@ Both fonts are SIL OFL 1.1. Keep `LICENSE-*.txt` next to the font files.
 ```bash
 npm install
 npm run dev              # showcase at http://localhost:5173
+npm run dev:base         # the same showcase on the Base UI components
 npm run build            # type-check + single-file build in dist/
-npm run registry:build   # writes public/r/*.json
-python3 scripts/gen-registry.py   # regenerate registry.json after adding a component
+npm run build:base       # the Base UI showcase in dist/base/
+npm run registry:build   # writes public/r/*.json and public/r/base/*.json
+python3 scripts/gen-registry.py   # regenerate registry.json and registry-base.json after adding a component
 python3 scripts/gen-css.py        # regenerate themes.css and docs/theme-adjustments.md
 python3 scripts/theme_audit.py    # contrast check of every theme
 ```
+
+Components that depend on Radix live in `src/components/ui/` and have a Base UI twin with the same name in `src/components/ui-base/`. When you change one, change the other. `R95_LIB=base` makes Vite resolve every component to its twin, so both builds render the same showcase source; the few props that differ between the libraries are wrapped in `src/showcase/lib.ts`.
 
 ## Credits
 
@@ -176,7 +213,7 @@ React95 UI is written by [aiiiden](https://github.com/aiiiden). It stands on the
 
 - [React95](https://github.com/arturbien/React95) by Artur Bień and contributors: the component set, the bevel recipes, the material token names and all 59 themes are ported from it.
 - [shadcn/ui](https://ui.shadcn.com): the registry format, the copy-and-own approach and the component APIs for the non-React95 set.
-- [Radix UI](https://www.radix-ui.com): behavior and accessibility.
+- [Radix UI](https://www.radix-ui.com) and [Base UI](https://base-ui.com): behavior and accessibility.
 - [catarchy](https://github.com/catarchy-net/catarchy): the pixel font setup (one font per size, split by `unicode-range`).
 - [UnifontEX](https://github.com/stgiga/UnifontEX) by stgiga and [Fusion Pixel Font](https://github.com/TakWolf/fusion-pixel-font) by TakWolf: the recommended fonts.
 - Windows 95, 98 and XP: the look being reinterpreted. No Microsoft code, fonts or icon artwork is included.

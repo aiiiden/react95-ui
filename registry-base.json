@@ -1,0 +1,1193 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "react95-ui",
+  "homepage": "https://aiiiden.github.io/react95-ui/",
+  "items": [
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn() helper",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "theme",
+      "type": "registry:item",
+      "title": "React95 theme",
+      "description": "Tokens, bevel utilities, pixel type utilities and 59 React95 themes for Tailwind v4. Fonts are not included: see the README for the recommended pixel fonts.",
+      "files": [
+        {
+          "path": "src/styles/react95.css",
+          "type": "registry:file",
+          "target": "src/styles/react95.css"
+        },
+        {
+          "path": "src/styles/themes.css",
+          "type": "registry:file",
+          "target": "src/styles/themes.css"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/button.json",
+        "https://aiiiden.github.io/react95-ui/r/base/message-icon.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/message-icon.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "anchor",
+      "type": "registry:ui",
+      "title": "Anchor",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/anchor.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "app-bar",
+      "type": "registry:ui",
+      "title": "App Bar",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/app-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "dependencies": [
+        "embla-carousel-react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "color-input",
+      "type": "registry:ui",
+      "title": "Color Input",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/color-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/command.json",
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/popover.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "dependencies": [
+        "cmdk"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/dropdown-menu.json",
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/context-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "counter",
+      "type": "registry:ui",
+      "title": "Counter",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/counter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/button.json",
+        "https://aiiiden.github.io/react95-ui/r/base/number-input.json",
+        "https://aiiiden.github.io/react95-ui/r/base/select.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json",
+        "https://aiiiden.github.io/react95-ui/r/base/window.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json",
+        "https://aiiiden.github.io/react95-ui/r/base/window.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "dependencies": [
+        "@base-ui/react",
+        "react-hook-form"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/label.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/form.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "frame",
+      "type": "registry:ui",
+      "title": "Frame",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/frame.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "group-box",
+      "type": "registry:ui",
+      "title": "Group Box",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/group-box.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "handle",
+      "type": "registry:ui",
+      "title": "Handle",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/handle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hourglass",
+      "type": "registry:ui",
+      "title": "Hourglass",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/hourglass.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icons",
+      "type": "registry:ui",
+      "title": "Icons",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/ui/icons.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp",
+      "dependencies": [
+        "input-otp"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input-otp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu-list",
+      "type": "registry:ui",
+      "title": "Menu List",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/menu-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/dropdown-menu.json",
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/menubar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "message-icon",
+      "type": "registry:ui",
+      "title": "Message Icon",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/message-icon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "monitor",
+      "type": "registry:ui",
+      "title": "Monitor",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/monitor.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/dropdown-menu.json",
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/navigation-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:ui",
+      "title": "Number Input",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/number-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/button.json",
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "dependencies": [
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/resizable.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scroll-view",
+      "type": "registry:ui",
+      "title": "Scroll View",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/scroll-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/select.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json",
+        "https://aiiiden.github.io/react95-ui/r/base/window.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "dependencies": [
+        "sonner"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/message-icon.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sonner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/toggle.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/toggle-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/button.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/button.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui-base/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "title": "Tree View",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tree-view.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "window",
+      "type": "registry:ui",
+      "title": "Window",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://aiiiden.github.io/react95-ui/r/base/icons.json",
+        "https://aiiiden.github.io/react95-ui/r/base/theme.json",
+        "https://aiiiden.github.io/react95-ui/r/base/utils.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/window.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

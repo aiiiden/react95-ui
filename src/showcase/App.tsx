@@ -1,4 +1,5 @@
 import * as React from "react"
+import { slot, one, mixed, isBase } from "./lib"
 import { themeNames } from "./theme-list"
 import { DemoWindow, Spec } from "./parts"
 import { Toaster } from "@/components/ui/sonner"
@@ -136,7 +137,7 @@ export function App() {
                   </SelectGroup>
                 </SelectContent>
               </Select>
-              <ToolbarToggleGroup type="single" value={mode} onValueChange={(v) => v && setMode(v as Mode)} aria-label="Color mode" disabled={!!theme}>
+              <ToolbarToggleGroup {...one({ value: mode, onValueChange: (v) => setMode(v as Mode) })} aria-label="Color mode" disabled={!!theme}>
                 <ToolbarToggleItem value="light" aria-label="Light" className="w-auto px-2">Light</ToolbarToggleItem>
                 <ToolbarToggleItem value="dark" aria-label="Dark" className="w-auto px-2">Dark</ToolbarToggleItem>
                 <ToolbarToggleItem value="system" aria-label="System" className="w-auto px-2">System</ToolbarToggleItem>
@@ -152,10 +153,14 @@ export function App() {
                 <h1 className="type-32 font-pixel-bold">React95, rebuilt on Tailwind v4</h1>
                 <p className="max-w-[80ch]">
                   <Anchor href="https://github.com/arturbien/React95" target="_blank" rel="noreferrer">React95</Anchor>'s Windows 95 components, ported the shadcn way.{" "}
-                  CSS variables and Tailwind utilities replace styled-components, and Radix UI handles behavior. Copy the code into your project and make it yours.
+                  CSS variables and Tailwind utilities replace styled-components, and {isBase ? "Base UI" : "Radix UI"} handles behavior. Copy the code into your project and make it yours.
+                </p>
+                <p className="type-12">
+                  Every component comes in two versions. You are looking at the <span className="font-pixel-bold">{isBase ? "Base UI" : "Radix UI"}</span> build:{" "}
+                  <Anchor href={isBase ? "../" : "./base/"}>switch to {isBase ? "Radix UI" : "Base UI"}</Anchor>.
                 </p>
                 <Frame variant="field" className="scrollbar-r95 overflow-x-auto p-3 type-12">
-                  <pre>{`npx shadcn@latest add aiiiden/react95-ui/button aiiiden/react95-ui/window
+                  <pre>{`${isBase ? "npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json" : "npx shadcn@latest add aiiiden/react95-ui/button aiiiden/react95-ui/window"}
 
 <Button primary>OK</Button>
 <div className="bevel-window bg-material p-2">bevel utility</div>`}</pre>
@@ -186,7 +191,7 @@ export function App() {
               <Spec name="Checkbox">
                 <div className="flex flex-col gap-2">
                   <label className="flex items-center gap-2"><Checkbox defaultChecked /> Show status bar</label>
-                  <label className="flex items-center gap-2"><Checkbox checked="indeterminate" /> Partially selected</label>
+                  <label className="flex items-center gap-2"><Checkbox {...mixed} /> Partially selected</label>
                   <label className="flex items-center gap-2 text-engraved"><Checkbox disabled /> Disabled</label>
                   <label className="flex items-center gap-2"><Checkbox variant="flat" defaultChecked /> flat</label>
                 </div>
@@ -294,7 +299,7 @@ export function App() {
                     <ToolbarButton>Back</ToolbarButton>
                     <ToolbarButton>Forward</ToolbarButton>
                     <ToolbarSeparator />
-                    <ToolbarToggleGroup type="single" value={view} onValueChange={(v) => v && setView(v)} aria-label="View">
+                    <ToolbarToggleGroup {...one({ value: view, onValueChange: setView })} aria-label="View">
                       <ToolbarToggleItem value="icons" aria-label="Large icons"><GridIcon /></ToolbarToggleItem>
                       <ToolbarToggleItem value="list" aria-label="List"><ListIcon /></ToolbarToggleItem>
                     </ToolbarToggleGroup>
@@ -397,9 +402,7 @@ export function App() {
                   <MenuListItem disabled>Paste</MenuListItem>
                 </MenuList>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button>Open View menu</Button>
-                  </DropdownMenuTrigger>
+                  <DropdownMenuTrigger {...slot(<Button>Open View menu</Button>)} />
                   <DropdownMenuContent>
                     <DropdownMenuLabel>View</DropdownMenuLabel>
                     <DropdownMenuCheckboxItem checked={showStatus} onCheckedChange={setShowStatus}>Status bar</DropdownMenuCheckboxItem>
@@ -439,7 +442,7 @@ export function App() {
                 <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
                 <Avatar square size={48}><AvatarFallback>95</AvatarFallback></Avatar>
                 <Tooltip>
-                  <TooltipTrigger asChild><Button>Hover me</Button></TooltipTrigger>
+                  <TooltipTrigger {...slot(<Button>Hover me</Button>)} />
                   <TooltipContent>Empties the Recycle Bin</TooltipContent>
                 </Tooltip>
                 <Anchor href="https://github.com/arturbien/React95" target="_blank" rel="noreferrer">Original React95</Anchor>
