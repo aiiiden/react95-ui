@@ -56,6 +56,12 @@
   --progress-foreground: #ffffff;
   --desktop-foreground: #ffffff;
   --material-hatch: #fefefe;
+  /* chart series: the dark half of the 16-color VGA palette */
+  --chart-1: #000080;
+  --chart-2: #008080;
+  --chart-3: #800000;
+  --chart-4: #808000;
+  --chart-5: #800080;
   --success: #007a00;
 }
 
@@ -97,6 +103,12 @@
   --progress-foreground: #000000;
   --desktop-foreground: #ffffff;
   --material-hatch: #101114;
+  /* chart series: the bright half of the VGA palette */
+  --chart-1: #6c8cff;
+  --chart-2: #00c0c0;
+  --chart-3: #ff6060;
+  --chart-4: #e0e040;
+  --chart-5: #ff60ff;
   --success: #5fd35f;
   color-scheme: dark;
 }
@@ -154,6 +166,11 @@
   --color-progress: var(--progress);
   --color-progress-foreground: var(--progress-foreground);
   --color-desktop-foreground: var(--desktop-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
   --color-tooltip: var(--tooltip);
   --color-danger: var(--danger);
   --color-danger-foreground: var(--danger-foreground);

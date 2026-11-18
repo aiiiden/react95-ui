@@ -40,9 +40,11 @@ def pairs():
     from importlib import import_module
     rules = import_module("gen-css").RULES
     out = [(k, b, need, what, (rest[0] if rest else None)) for k, bgs, need, what, *rest in rules for b in bgs]
-    return out + [("danger", "material", 4.5, "form error text", None), ("danger-foreground", "danger", 4.5, "destructive badge text", None),
-                  ("progress-foreground", "progress", 4.5, "text on the progress fill", None),
-                  ("desktop-foreground", "desktop-background", 4.5, "text on the desktop", None), ("material-text", "material-hatch", 3.0, "label on a pressed button", None)]
+    extra = [("danger", "material", 4.5, "form error text", None), ("danger-foreground", "danger", 4.5, "destructive badge text", None),
+             ("progress-foreground", "progress", 4.5, "text on the progress fill", None),
+             ("desktop-foreground", "desktop-background", 4.5, "text on the desktop", None), ("material-text", "material-hatch", 3.0, "label on a pressed button", None)]
+    charts = [(f"chart-{i}", "canvas", 3.0, "chart series", None) for i in range(1, 6)]
+    return out + extra + charts
 PAIRS = None
 
 def audit(themes=None):

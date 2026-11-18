@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useForm } from "react-hook-form"
-import { Bar, BarChart, CartesianGrid, Tooltip as ChartTooltip, XAxis, YAxis } from "recharts"
+import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, Pie, PieChart, Tooltip as ChartTooltip, XAxis, YAxis } from "recharts"
 import { DemoWindow, Spec } from "./parts"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -16,7 +16,7 @@ import { ButtonGroup } from "@/components/ui/button-group"
 import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { ChartContainer, ChartLegend, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
+import { ChartContainer, ChartDot, ChartHatch, ChartLegend, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Combobox } from "@/components/ui/combobox"
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/components/ui/command"
@@ -47,12 +47,43 @@ import { Switch } from "@/components/ui/switch"
 import { Toggle } from "@/components/ui/toggle"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
-const chartData = [
-  { q: "Q1", files: 24, folders: 6 },
-  { q: "Q2", files: 38, folders: 9 },
-  { q: "Q3", files: 31, folders: 14 },
-  { q: "Q4", files: 52, folders: 11 },
+const quarters = [
+  { q: "Q1", files: 24, folders: 6, shortcuts: 4 },
+  { q: "Q2", files: 38, folders: 9, shortcuts: 7 },
+  { q: "Q3", files: 31, folders: 14, shortcuts: 5 },
+  { q: "Q4", files: 52, folders: 11, shortcuts: 9 },
 ]
+const drives = [
+  { drive: "A:", used: 1.2 },
+  { drive: "C:", used: 412 },
+  { drive: "D:", used: 268 },
+  { drive: "E:", used: 95 },
+]
+const memory = [
+  { t: "09:00", used: 9, cache: 3 },
+  { t: "10:00", used: 12, cache: 4 },
+  { t: "11:00", used: 11, cache: 6 },
+  { t: "12:00", used: 15, cache: 5 },
+  { t: "13:00", used: 13, cache: 7 },
+  { t: "14:00", used: 18, cache: 6 },
+  { t: "15:00", used: 16, cache: 8 },
+]
+const disk = [
+  { name: "used", value: 412, fill: "var(--chart-1)" },
+  { name: "system", value: 96, fill: "var(--chart-3)" },
+  { name: "free", value: 516, fill: "var(--chart-2)" },
+]
+const seriesConfig: ChartConfig = {
+  files: { label: "Files", color: "var(--chart-1)" },
+  folders: { label: "Folders", color: "var(--chart-4)" },
+  shortcuts: { label: "Shortcuts", color: "var(--chart-2)" },
+}
+const pairConfig: ChartConfig = { files: seriesConfig.files, folders: seriesConfig.folders }
+const driveConfig: ChartConfig = { used: { label: "Used (MB)", color: "var(--chart-1)" } }
+const memoryConfig: ChartConfig = { used: { label: "In use (MB)", color: "var(--chart-1)" }, cache: { label: "Cache (MB)", color: "var(--chart-3)" } }
+const diskConfig: ChartConfig = { used: { label: "Used", color: "var(--chart-1)" }, system: { label: "System", color: "var(--chart-3)" }, free: { label: "Free", color: "var(--chart-2)" } }
+const axis = { tickLine: false } as const
+const tip = <ChartTooltip cursor={false} isAnimationActive={false} content={<ChartTooltipContent />} />
 
 const systems = [
   { value: "win95", label: "Windows 95" },
@@ -78,10 +109,6 @@ export function MoreSections() {
   const [open, setOpen] = React.useState(false)
   const [place, setPlace] = React.useState("documents")
   const form = useForm<{ name: string }>({ defaultValues: { name: "" } })
-  const chartConfig: ChartConfig = {
-    files: { label: "Files", color: "var(--progress)" },
-    folders: { label: "Folders", color: "#f7c600" },
-  }
   const places = [
     { id: "documents", label: "Documents" },
     { id: "programs", label: "Programs" },
@@ -397,28 +424,13 @@ export function MoreSections() {
         </Spec>
       </DemoWindow>
 
-      <DemoWindow title="Feedback · Data (6)" className="lg:col-span-2" status={<span>Alert · Badge · Skeleton · Toaster · Carousel · Chart</span>}>
+      <DemoWindow title="Feedback (5)" className="lg:col-span-2" status={<span>Alert · Badge · Skeleton · Toaster · Carousel</span>}>
         <div className="grid gap-x-8 gap-y-6 md:grid-cols-2">
           <Spec name="Alert">
             <div className="flex w-full flex-col gap-2">
               <Alert><AlertTitle>Note</AlertTitle><AlertDescription>Setup finished.</AlertDescription></Alert>
               <Alert variant="warning"><AlertTitle>Warning</AlertTitle><AlertDescription>The disk is almost full.</AlertDescription></Alert>
               <Alert variant="destructive" icon={16}><AlertDescription>The file could not be found.</AlertDescription></Alert>
-            </div>
-          </Spec>
-          <Spec name="Chart">
-            <div className="flex w-full flex-col gap-2">
-              <ChartContainer config={chartConfig}>
-                <BarChart data={chartData} margin={{ top: 4, right: 4, bottom: 0, left: -16 }} barGap={0}>
-                  <CartesianGrid vertical={false} strokeDasharray="1 3" />
-                  <XAxis dataKey="q" tickLine={false} />
-                  <YAxis tickLine={false} />
-                  <ChartTooltip cursor={false} isAnimationActive={false} content={<ChartTooltipContent />} />
-                  <Bar dataKey="files" fill="var(--color-files)" stroke="var(--border-darkest)" isAnimationActive={false} />
-                  <Bar dataKey="folders" fill="var(--color-folders)" stroke="var(--border-darkest)" isAnimationActive={false} />
-                </BarChart>
-              </ChartContainer>
-              <ChartLegend />
             </div>
           </Spec>
           <Spec name="Badge · Skeleton · Toaster">
@@ -440,6 +452,99 @@ export function MoreSections() {
               </CarouselContent>
               <CarouselNext aria-label="Next" />
             </Carousel>
+          </Spec>
+        </div>
+      </DemoWindow>
+
+      <DemoWindow title="Charts (6)" className="lg:col-span-2" status={<span>Chart · ChartTooltipContent · ChartLegend · ChartDot · ChartHatch · var(--chart-1) to var(--chart-5)</span>}>
+        <div className="grid gap-x-8 gap-y-6 md:grid-cols-2 xl:grid-cols-3">
+          <Spec name="Bar · grouped">
+            <div className="flex w-full flex-col gap-2">
+              <ChartContainer config={pairConfig} className="h-48">
+                <BarChart data={quarters} margin={{ top: 4, right: 4, bottom: 0, left: -16 }} barGap={0}>
+                  <CartesianGrid vertical={false} strokeDasharray="1 3" />
+                  <XAxis dataKey="q" {...axis} />
+                  <YAxis {...axis} />
+                  {tip}
+                  <Bar dataKey="files" fill="var(--color-files)" stroke="var(--border-darkest)" isAnimationActive={false} />
+                  <Bar dataKey="folders" fill="var(--color-folders)" stroke="var(--border-darkest)" isAnimationActive={false} />
+                </BarChart>
+              </ChartContainer>
+              <ChartLegend config={pairConfig} />
+            </div>
+          </Spec>
+          <Spec name="Bar · stacked">
+            <div className="flex w-full flex-col gap-2">
+              <ChartContainer config={seriesConfig} className="h-48">
+                <BarChart data={quarters} margin={{ top: 4, right: 4, bottom: 0, left: -16 }}>
+                  <CartesianGrid vertical={false} strokeDasharray="1 3" />
+                  <XAxis dataKey="q" {...axis} />
+                  <YAxis {...axis} />
+                  {tip}
+                  <Bar dataKey="files" stackId="a" fill="var(--color-files)" stroke="var(--border-darkest)" isAnimationActive={false} />
+                  <Bar dataKey="folders" stackId="a" fill="var(--color-folders)" stroke="var(--border-darkest)" isAnimationActive={false} />
+                  <Bar dataKey="shortcuts" stackId="a" fill="var(--color-shortcuts)" stroke="var(--border-darkest)" isAnimationActive={false} />
+                </BarChart>
+              </ChartContainer>
+              <ChartLegend config={seriesConfig} />
+            </div>
+          </Spec>
+          <Spec name="Bar · horizontal">
+            <div className="flex w-full flex-col gap-2">
+              <ChartContainer config={driveConfig} className="h-48">
+                <BarChart data={drives} layout="vertical" margin={{ top: 4, right: 12, bottom: 0, left: -28 }}>
+                  <CartesianGrid horizontal={false} strokeDasharray="1 3" />
+                  <XAxis type="number" {...axis} />
+                  <YAxis type="category" dataKey="drive" {...axis} />
+                  {tip}
+                  <Bar dataKey="used" fill="var(--color-used)" stroke="var(--border-darkest)" isAnimationActive={false} />
+                </BarChart>
+              </ChartContainer>
+              <ChartLegend config={driveConfig} />
+            </div>
+          </Spec>
+          <Spec name="Line">
+            <div className="flex w-full flex-col gap-2">
+              <ChartContainer config={memoryConfig} className="h-48">
+                <LineChart data={memory} margin={{ top: 8, right: 20, bottom: 0, left: -16 }}>
+                  <CartesianGrid vertical={false} strokeDasharray="1 3" />
+                  <XAxis dataKey="t" {...axis} interval={1} />
+                  <YAxis {...axis} />
+                  {tip}
+                  <Line dataKey="used" type="linear" stroke="var(--color-used)" strokeWidth={2} dot={<ChartDot />} activeDot={false} isAnimationActive={false} />
+                  <Line dataKey="cache" type="linear" stroke="var(--color-cache)" strokeWidth={2} dot={<ChartDot />} activeDot={false} isAnimationActive={false} />
+                </LineChart>
+              </ChartContainer>
+              <ChartLegend config={memoryConfig} />
+            </div>
+          </Spec>
+          <Spec name="Area · stepped, dithered">
+            <div className="flex w-full flex-col gap-2">
+              <ChartContainer config={memoryConfig} className="h-48">
+                <AreaChart data={memory} margin={{ top: 8, right: 20, bottom: 0, left: -16 }}>
+                  <ChartHatch id="hatch-used" color="var(--chart-1)" />
+                  <ChartHatch id="hatch-cache" color="var(--chart-3)" background="var(--canvas)" />
+                  <CartesianGrid vertical={false} strokeDasharray="1 3" />
+                  <XAxis dataKey="t" {...axis} interval={1} />
+                  <YAxis {...axis} />
+                  {tip}
+                  <Area dataKey="used" type="stepAfter" stroke="var(--color-used)" strokeWidth={2} fill="url(#hatch-used)" fillOpacity={1} activeDot={false} isAnimationActive={false} />
+                  <Area dataKey="cache" type="stepAfter" stroke="var(--color-cache)" strokeWidth={2} fill="url(#hatch-cache)" fillOpacity={1} activeDot={false} isAnimationActive={false} />
+                </AreaChart>
+              </ChartContainer>
+              <ChartLegend config={memoryConfig} />
+            </div>
+          </Spec>
+          <Spec name="Pie">
+            <div className="flex w-full flex-col gap-2">
+              <ChartContainer config={diskConfig} className="h-48">
+                <PieChart>
+                  {tip}
+                  <Pie data={disk} dataKey="value" nameKey="name" outerRadius="90%" startAngle={90} endAngle={-270} stroke="var(--border-darkest)" strokeWidth={1} isAnimationActive={false} />
+                </PieChart>
+              </ChartContainer>
+              <ChartLegend config={diskConfig} />
+            </div>
           </Spec>
         </div>
       </DemoWindow>

@@ -34,6 +34,7 @@ Notes on the shadcn set:
 
 - Modals do not dim the page, as in Windows 95. The overlay only blocks clicks.
 - Dialog, Sheet and Drawer put the title in a title bar (`DialogHeader`) and the text in `DialogBody`. AlertDialog is a message box: `AlertDialogBody icon="question"` picks one of four pixel icons.
+- Chart wraps Recharts and adds the pieces a pixel chart needs: `ChartDot` (square data points), `ChartHatch` (a 2px checkerboard fill, the way 16-color charts faked a lighter shade), `ChartLegend` and `ChartTooltipContent`. The showcase has grouped, stacked and horizontal bars, a line, a stepped area and a pie.
 - Calendar is written from scratch on `Date` and `Intl` (no react-day-picker). Sidebar is a compact version: it collapses to nothing or to an icon rail, and does not become a sheet on phones.
 - Toaster borrows from one release later: toasts are Windows XP notification balloons redrawn in pixels (the `balloon` utility: pale yellow, stepped corners, a tail aimed at the taskbar). Set `offset` so the tail lands on your status area. `toast.info`, `toast.warning` and `toast.error` add the matching icon.
 - Switch did not exist in Windows 95. It is built from a sunken track and a raised thumb.
@@ -69,7 +70,7 @@ The themes are not copied blindly. Many of the originals pair colors that are ha
 
 `scripts/theme_audit.py` checks every theme against the same rules and exits with the list of failures, if any.
 
-Tokens added on top of React95's, derived per theme so they always contrast with what they sit on: `--danger`, `--danger-foreground`, `--success`, `--progress-foreground` (label on a progress fill), `--desktop-foreground` (text on the desktop color), `--material-hatch` (the checkerboard on pressed buttons) and, for themes with a gradient title bar, a solid `--primary`.
+Tokens added on top of React95's, derived per theme so they always contrast with what they sit on: `--danger`, `--danger-foreground`, `--success`, `--progress-foreground` (label on a progress fill), `--desktop-foreground` (text on the desktop color), `--material-hatch` (the checkerboard on pressed buttons), `--chart-1` to `--chart-5` (chart series, from the 16-color VGA palette) and, for themes with a gradient title bar, a solid `--primary`.
 
 ### Type scale
 
