@@ -437,6 +437,18 @@ export function App() {
                 <Hourglass size={16} />
                 <Hourglass size={48} />
               </Spec>
+              <Spec name="Monitor">
+                <Monitor width={160} aria-label="Desktop preview" />
+                <Monitor width={160}>
+                  <div className="flex h-full flex-col items-center justify-center gap-2">
+                    <Hourglass size={32} />
+                    <span className="type-12 text-desktop-foreground">Please wait...</span>
+                  </div>
+                </Monitor>
+                <Monitor width={96} screenClassName="bg-black">
+                  <div className="p-1 type-10 text-white">C:\&gt;_</div>
+                </Monitor>
+              </Spec>
               <Spec name="Avatar · Tooltip · Anchor">
                 <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
                 <Avatar square size={48}><AvatarFallback>95</AvatarFallback></Avatar>
