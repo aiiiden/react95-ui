@@ -3,11 +3,19 @@
 Every component exists once in src/components/ui. The ones that depend on Radix have a second
 version in src/components/ui-base; the Base UI registry serves that version when there is one
 and the shared file otherwise."""
-import json, re, pathlib
+import json, os, re, pathlib
 root = pathlib.Path(__file__).resolve().parent.parent
 # Items point at each other by full URL. That resolves the same way however an item is
 # installed: by URL, by GitHub address (aiiiden/react95-ui/button) or through a namespace.
-SITE = "https://aiiiden.github.io/react95-ui"
+# R95_SITE is where this build will be served from. Each host sets its own, so a registry
+# never points at another host for its dependencies.
+def site():
+  if os.environ.get("R95_SITE"): return os.environ["R95_SITE"]
+  # Cloudflare Pages gives each deployment https://<hash>.<project>.pages.dev; the site itself
+  # is that address without the first label
+  m = re.match(r"https://[^.]+\.([^/]+\.pages\.dev)", os.environ.get("CF_PAGES_URL", ""))
+  return f"https://{m.group(1)}" if m else "https://aiiiden.github.io/react95-ui"
+SITE = site().rstrip("/")
 ui, ui_base = root / "src/components/ui", root / "src/components/ui-base"
 
 def build(name, base_url, pick, note):

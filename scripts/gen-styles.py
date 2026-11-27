@@ -2,7 +2,7 @@
 
 A namespace URL may contain {style}; the CLI fills it with the "style" from the project's
 components.json (base-nova, radix-vega, ...; a legacy "new-york" is sent as new-york-v4).
-With https://aiiiden.github.io/react95-ui/r/{style}/{name}.json a project therefore gets the
+With <site>/r/{style}/{name}.json a project therefore gets the
 Base UI version when it was set up on Base UI and the Radix UI version otherwise.
 
 GitHub Pages cannot route, so each style gets a folder of copies. The copies keep pointing at

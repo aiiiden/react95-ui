@@ -1,5 +1,5 @@
 import * as React from "react"
-import { slot, one, mixed, isBase } from "./lib"
+import { slot, one, mixed, isBase, site } from "./lib"
 import { setTheme as applyTheme, themeNames } from "@/lib/react95-theme"
 import { DemoWindow, Spec } from "./parts"
 import { Toaster } from "@/components/ui/sonner"
@@ -156,10 +156,10 @@ export function App() {
                 </p>
                 <p className="type-12">
                   Every component comes in two versions. You are looking at the <span className="font-pixel-bold">{isBase ? "Base UI" : "Radix UI"}</span> build:{" "}
-                  <Anchor href={isBase ? "https://aiiiden.github.io/react95-ui/" : "https://aiiiden.github.io/react95-ui/base/"}>switch to {isBase ? "Radix UI" : "Base UI"}</Anchor>.
+                  <Anchor href={isBase ? `${site}/` : `${site}/base/`}>switch to {isBase ? "Radix UI" : "Base UI"}</Anchor>.
                 </p>
                 <Frame variant="field" className="scrollbar-r95 overflow-x-auto p-3 type-12">
-                  <pre>{`${isBase ? "npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json" : "npx shadcn@latest add aiiiden/react95-ui/button aiiiden/react95-ui/window"}
+                  <pre>{`${isBase ? `npx shadcn@latest add ${site}/r/base/button.json` : "npx shadcn@latest add aiiiden/react95-ui/button aiiiden/react95-ui/window"}
 
 <Button primary>OK</Button>
 <div className="bevel-window bg-material p-2">bevel utility</div>`}</pre>

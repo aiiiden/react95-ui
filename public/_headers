@@ -1,0 +1,7 @@
+# Cloudflare Pages response headers (GitHub Pages ignores this file; it already sends these).
+# The registry is read by CLIs and editors from anywhere, and the font files are loaded by
+# other sites through the hosted fonts.css, which browsers only allow with this header.
+/r/*
+  Access-Control-Allow-Origin: *
+/fonts/*
+  Access-Control-Allow-Origin: *

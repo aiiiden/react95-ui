@@ -7,6 +7,10 @@ import * as React from "react"
 declare const __R95_BASE__: boolean
 export const isBase = __R95_BASE__
 
+/** The address this build is published at, without a trailing slash */
+declare const __R95_SITE__: string
+export const site = __R95_SITE__
+
 /** Compose a part with your own element: asChild in Radix, render in Base UI */
 export function slot(el: React.ReactElement) {
   return (isBase ? { render: el } : { asChild: true, children: el }) as { asChild: true; children: React.ReactElement }

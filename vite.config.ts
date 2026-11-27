@@ -10,6 +10,9 @@ const dir = import.meta.dirname
  * src/components/ui/x.tsx is sent to src/components/ui-base/x.tsx when that file exists.
  * It mirrors what a project gets when it installs from the Base UI registry. */
 const useBase = process.env.R95_LIB === "base"
+/* Where this build is served from; the same variable gen-registry.py reads */
+const cloudflare = (process.env.CF_PAGES_URL ?? "").match(/^https:\/\/[^.]+\.([^/]+\.pages\.dev)/)
+const site = (process.env.R95_SITE || (cloudflare ? `https://${cloudflare[1]}` : "https://aiiiden.github.io/react95-ui")).replace(/\/+$/, "")
 
 function baseUiComponents(): Plugin {
   const ui = path.resolve(dir, "src/components/ui")
@@ -106,7 +109,7 @@ function specCode(): Plugin {
 export default defineConfig({
   base: "./",
   plugins: [specCode(), ...(useBase ? [baseUiComponents()] : []), react(), tailwindcss(), viteSingleFile()],
-  define: { __R95_BASE__: JSON.stringify(useBase) },
+  define: { __R95_BASE__: JSON.stringify(useBase), __R95_SITE__: JSON.stringify(site) },
   resolve: { alias: { "@": path.resolve(dir, "./src") } },
   ...(useBase && { publicDir: false, build: { outDir: "dist/base" } }),
 })
