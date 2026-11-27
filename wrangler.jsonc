@@ -5,6 +5,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "react95-ui",
   "compatibility_date": "2026-11-01",
-  "build": { "command": "npm run build:site" },
+  // R95_SITE is this deployment's address: registry items point at it for their dependencies
+  "build": { "command": "R95_SITE=https://react95-ui.hjjam100.workers.dev npm run build:site" },
   "assets": { "directory": "./dist" }
 }

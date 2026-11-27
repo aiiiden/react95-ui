@@ -1,6 +1,6 @@
 # React95 UI
 
-**[Live showcase](https://aiiiden.github.io/react95-ui/)** · [the same page on Base UI](https://aiiiden.github.io/react95-ui/base/)
+**[Live showcase](https://react95-ui.hjjam100.workers.dev/)** · [the same page on Base UI](https://react95-ui.hjjam100.workers.dev/base/)
 
 A port of [React95](https://github.com/arturbien/React95) (Windows 95 components for React) to **Tailwind CSS v4 + shadcn/ui conventions**.
 
@@ -109,7 +109,7 @@ npx shadcn@latest add aiiiden/react95-ui/theme aiiiden/react95-ui/button aiiiden
 **2. URL** (no configuration):
 
 ```bash
-npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/button.json
+npx shadcn@latest add https://react95-ui.hjjam100.workers.dev/r/button.json
 ```
 
 **3. Namespace**. Add the registry to your app's `components.json` once:
@@ -117,7 +117,7 @@ npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/button.json
 ```json
 {
   "registries": {
-    "@react95-ui": "https://aiiiden.github.io/react95-ui/r/{style}/{name}.json"
+    "@react95-ui": "https://react95-ui.hjjam100.workers.dev/r/{style}/{name}.json"
   }
 }
 ```
@@ -130,6 +130,8 @@ npx shadcn@latest add @react95-ui/theme @react95-ui/button @react95-ui/window
 
 The full item list is in [`registry.json`](./registry.json).
 
+The same site is also published on GitHub Pages at `https://aiiiden.github.io/react95-ui/`, with its own copy of the registry. Addresses there keep working.
+
 The theme installs as plain files and needs no shadcn setup. Components need a `components.json`; if the CLI offers to create one and asks for a component library, pick the one you are installing from here (Radix UI for the addresses above), so stock shadcn components you add later use the same library.
 
 ### Radix UI or Base UI
@@ -137,7 +139,7 @@ The theme installs as plain files and needs no shadcn setup. Components need a `
 Every component exists in two versions that look and measure the same. The GitHub and URL addresses above install the Radix UI version, and the namespace address picks the version from your project's style. To choose by hand, use `/r/{name}.json` for Radix UI and `/r/base/{name}.json` for Base UI:
 
 ```bash
-npx shadcn@latest add https://aiiiden.github.io/react95-ui/r/base/button.json
+npx shadcn@latest add https://react95-ui.hjjam100.workers.dev/r/base/button.json
 ```
 
 
@@ -190,7 +192,7 @@ Two ways to load it:
 
 ```html
 <!-- 2. or link the hosted copy (or host the folder yourself) -->
-<link rel="stylesheet" href="https://aiiiden.github.io/react95-ui/fonts/fonts.css" />
+<link rel="stylesheet" href="https://react95-ui.hjjam100.workers.dev/fonts/fonts.css" />
 ```
 
 Both fonts are SIL OFL 1.1. Keep `LICENSE-*.txt` next to the font files.
@@ -215,7 +217,7 @@ python3 scripts/theme_audit.py    # contrast check of every theme
 
 Each section of the showcase has a Code button that shows that section's own source. It is taken from the showcase files at build time (`specCode` in `vite.config.ts`), so it is always the code that is running, written for whichever library the page was built on.
 
-The site can be served from more than one host. `R95_SITE` (for example `https://example.com/ui`) tells the build where it will live, so registry items point at that host for their dependencies and the showcase prints the right install address. Without it the build uses the Cloudflare Pages address when it runs there, and the GitHub Pages address otherwise. `public/_headers` gives Cloudflare the cross-origin headers that GitHub Pages sends by default.
+The site can be served from more than one host. `R95_SITE` (for example `https://example.com/ui`) tells the build where it will live, so registry items point at that host for their dependencies and the showcase prints the right install address. The Cloudflare deployment sets it in `wrangler.jsonc`; without it the build uses the GitHub Pages address. `public/_headers` gives Cloudflare the cross-origin headers that GitHub Pages sends by default.
 
 Components that depend on Radix live in `src/components/ui/` and have a Base UI twin with the same name in `src/components/ui-base/`. When you change one, change the other. `R95_LIB=base` makes Vite resolve every component to its twin, so both builds render the same showcase source; the few props that differ between the libraries are wrapped in `src/showcase/lib.ts`.
 
