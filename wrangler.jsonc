@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers deployment: the site is static files only (no Worker script).
+  // `wrangler deploy` runs the build below first, so the registry, both showcases and the
+  // fonts are always built, whatever build command the dashboard is set to.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "react95-ui",
+  "compatibility_date": "2026-11-01",
+  "build": { "command": "npm run build:site" },
+  "assets": { "directory": "./dist" }
+}
