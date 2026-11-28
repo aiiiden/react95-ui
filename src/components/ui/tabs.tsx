@@ -3,8 +3,24 @@ import { Tabs as TabsPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 import { TriangleLeft, TriangleRight } from "./icons"
 
-function Tabs({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.Root>) {
-  return <TabsPrimitive.Root data-slot="tabs" className={cn("flex flex-col type-16", className)} {...props} />
+/* Tabs takes the exact type of its values (a union of your tab names, say) as a type argument,
+ * inferred from `value` / `defaultValue`, so onValueChange hands back that type instead of string. */
+type TabsProps<TValue extends string = string> = Omit<React.ComponentProps<typeof TabsPrimitive.Root>, "value" | "defaultValue" | "onValueChange"> & {
+  value?: TValue
+  defaultValue?: TValue
+  onValueChange?: (value: TValue) => void
+}
+
+function Tabs<TValue extends string = string>({ className, onValueChange, ...props }: TabsProps<TValue>) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      className={cn("flex flex-col type-16", className)}
+      /* Radix reports the value of the tab that was activated, which is one of TValue */
+      onValueChange={onValueChange as ((value: string) => void) | undefined}
+      {...props}
+    />
+  )
 }
 
 type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & {
@@ -204,4 +220,4 @@ function TabsContent({ className, ...props }: React.ComponentProps<typeof TabsPr
   return <TabsPrimitive.Content data-slot="tabs-content" className={cn("bevel-window bg-material p-4 type-16 text-material-text outline-none", className)} {...props} />
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export { Tabs, TabsList, TabsTrigger, TabsContent, type TabsProps }

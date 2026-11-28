@@ -31,7 +31,9 @@ function SelectGroup(props: SelectPrimitive.Group.Props) {
   return <SelectPrimitive.Group data-slot="select-group" {...props} />
 }
 
-function SelectValue({ children, placeholder, ...props }: SelectPrimitive.Value.Props) {
+/* `children` may be a function of the selected value. Base UI types that value as `any`; here it is
+ * `unknown` unless you name the type: <SelectValue<Fruit>>{(fruit) => ...}</SelectValue> */
+function SelectValue<TValue = unknown>({ children, placeholder, ...props }: Omit<SelectPrimitive.Value.Props, "children"> & { children?: React.ReactNode | ((value: TValue) => React.ReactNode) }) {
   const labels = React.useContext(LabelsContext)
   const text = (value: unknown): React.ReactNode => {
     if (Array.isArray(value)) return value.length ? value.map((v, i) => <React.Fragment key={i}>{i > 0 && ", "}{text(v)}</React.Fragment>) : placeholder
@@ -117,7 +119,7 @@ function SelectLabel({ className, ...props }: SelectPrimitive.GroupLabel.Props) 
   return <SelectPrimitive.GroupLabel data-slot="select-label" className={cn("px-2 py-1 type-12 text-canvas-text-disabled", className)} {...props} />
 }
 
-function SelectItem({ className, children, ...props }: SelectPrimitive.Item.Props) {
+function SelectItem<TValue = string>({ className, children, ...props }: Omit<SelectPrimitive.Item.Props, "value"> & { value?: TValue }) {
   const labels = React.useContext(LabelsContext)
   const add = labels?.add
   React.useLayoutEffect(() => add?.(props.value, children), [add, props.value, children])

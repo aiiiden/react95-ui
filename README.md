@@ -156,6 +156,7 @@ The Base UI version follows Base UI's conventions, as shadcn's own Base UI compo
 | Slider value | always an array | a number, or an array for several thumbs |
 | Tooltip and HoverCard delay | `delayDuration`, `openDelay` | `delay` |
 | Popover anchored elsewhere | `<PopoverAnchor>` | `anchor` on `PopoverContent` |
+| Value types | Radix's own (strings) | Base UI types many values as `any`; these wrappers take a type argument instead (`string` by default, inferred from `value`), for Tabs, Accordion, RadioGroup, the menu radio groups, NavigationMenu and SelectItem. Tabs and NavigationMenu report `null` when nothing is selected |
 | State selectors | `data-[state=open]`, `data-[state=checked]` | `data-[popup-open]`, `data-[checked]`, `data-[pressed]`, `data-[active]` |
 
 Two things are evened out so the versions stay interchangeable: `SelectValue` shows the selected item's text in both (Base UI alone would show the raw value unless you pass `items`), and slider thumbs travel the full width of the track in both.

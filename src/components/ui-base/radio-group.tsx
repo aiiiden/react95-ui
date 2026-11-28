@@ -3,7 +3,8 @@ import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { cn } from "@/lib/utils"
 import { PixelArt } from "@/components/ui/icons"
 
-function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
+/* Base UI types these values as `any`. The type argument (string unless you say or pass otherwise) keeps `any` out of your handlers. */
+function RadioGroup<TValue = string>({ className, ...props }: RadioGroupPrimitive.Props<TValue>) {
   return <RadioGroupPrimitive data-slot="radio-group" className={cn("grid gap-2 type-16", className)} {...props} />
 }
 
@@ -22,7 +23,7 @@ const RING = Array.from({ length: SIZE }, (_, y) =>
 )
 const DOT = ["..XX..", ".XXXX.", "XXXXXX", "XXXXXX", ".XXXX.", "..XX.."]
 
-function RadioGroupItem({ className, variant = "default", disabled, ...props }: RadioPrimitive.Root.Props & { variant?: "default" | "flat" }) {
+function RadioGroupItem<TValue = string>({ className, variant = "default", disabled, ...props }: RadioPrimitive.Root.Props<TValue> & { variant?: "default" | "flat" }) {
   const face = disabled ? "var(--material)" : "var(--canvas)"
   const palette =
     variant === "flat"

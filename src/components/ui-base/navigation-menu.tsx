@@ -4,7 +4,8 @@ import { menuPanelClass } from "./dropdown-menu"
 import { TriangleDown } from "@/components/ui/icons"
 
 /** Site navigation as a row of flat toolbar buttons; each panel drops below its own button */
-function NavigationMenu({ className, children, ...props }: NavigationMenuPrimitive.Root.Props) {
+/* The value names the open item. Base UI types these values as `any`. The type argument (string unless you say or pass otherwise) keeps `any` out of your handlers. */
+function NavigationMenu<TValue = string>({ className, children, ...props }: NavigationMenuPrimitive.Root.Props<TValue>) {
   return (
     <NavigationMenuPrimitive.Root data-slot="navigation-menu" className={cn("relative z-10 flex max-w-full type-16 text-material-text", className)} {...props}>
       {children}
@@ -23,7 +24,7 @@ function NavigationMenuList({ className, ...props }: NavigationMenuPrimitive.Lis
   return <NavigationMenuPrimitive.List data-slot="navigation-menu-list" className={cn("flex flex-wrap items-center gap-0.5", className)} {...props} />
 }
 
-function NavigationMenuItem({ className, ...props }: NavigationMenuPrimitive.Item.Props) {
+function NavigationMenuItem<TValue = string>({ className, ...props }: Omit<NavigationMenuPrimitive.Item.Props, "value"> & { value?: TValue }) {
   return <NavigationMenuPrimitive.Item data-slot="navigation-menu-item" className={cn("relative", className)} {...props} />
 }
 

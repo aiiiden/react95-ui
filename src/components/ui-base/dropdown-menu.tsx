@@ -29,7 +29,14 @@ function DropdownMenuSub(props: MenuPrimitive.SubmenuRoot.Props) {
   return <MenuPrimitive.SubmenuRoot data-slot="dropdown-menu-sub" {...props} />
 }
 
-function DropdownMenuRadioGroup(props: MenuPrimitive.RadioGroup.Props) {
+/* Base UI types these values as `any`. The type argument (string unless you say or pass otherwise) keeps `any` out of your handlers. */
+type DropdownMenuRadioGroupProps<TValue> = Omit<MenuPrimitive.RadioGroup.Props, "value" | "defaultValue" | "onValueChange"> & {
+  value?: TValue
+  defaultValue?: TValue
+  onValueChange?: (value: TValue, eventDetails: MenuPrimitive.RadioGroup.ChangeEventDetails) => void
+}
+
+function DropdownMenuRadioGroup<TValue = string>(props: DropdownMenuRadioGroupProps<TValue>) {
   return <MenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />
 }
 
@@ -61,7 +68,7 @@ function DropdownMenuCheckboxItem({ className, children, ...props }: MenuPrimiti
   )
 }
 
-function DropdownMenuRadioItem({ className, children, ...props }: MenuPrimitive.RadioItem.Props) {
+function DropdownMenuRadioItem<TValue = string>({ className, children, ...props }: Omit<MenuPrimitive.RadioItem.Props, "value"> & { value: TValue }) {
   return (
     <MenuPrimitive.RadioItem data-slot="dropdown-menu-radio-item" className={cn(item, className)} {...props}>
       <MenuPrimitive.RadioItemIndicator className="absolute left-2.5">

@@ -23,7 +23,14 @@ function ContextMenuSub(props: ContextMenuPrimitive.SubmenuRoot.Props) {
   return <ContextMenuPrimitive.SubmenuRoot data-slot="context-menu-sub" {...props} />
 }
 
-function ContextMenuRadioGroup(props: ContextMenuPrimitive.RadioGroup.Props) {
+/* Base UI types these values as `any`. The type argument (string unless you say or pass otherwise) keeps `any` out of your handlers. */
+type ContextMenuRadioGroupProps<TValue> = Omit<ContextMenuPrimitive.RadioGroup.Props, "value" | "defaultValue" | "onValueChange"> & {
+  value?: TValue
+  defaultValue?: TValue
+  onValueChange?: (value: TValue, eventDetails: ContextMenuPrimitive.RadioGroup.ChangeEventDetails) => void
+}
+
+function ContextMenuRadioGroup<TValue = string>(props: ContextMenuRadioGroupProps<TValue>) {
   return <ContextMenuPrimitive.RadioGroup data-slot="context-menu-radio-group" {...props} />
 }
 
@@ -55,7 +62,7 @@ function ContextMenuCheckboxItem({ className, children, ...props }: ContextMenuP
   )
 }
 
-function ContextMenuRadioItem({ className, children, ...props }: ContextMenuPrimitive.RadioItem.Props) {
+function ContextMenuRadioItem<TValue = string>({ className, children, ...props }: Omit<ContextMenuPrimitive.RadioItem.Props, "value"> & { value: TValue }) {
   return (
     <ContextMenuPrimitive.RadioItem data-slot="context-menu-radio-item" className={cn(menuItemClass, className)} {...props}>
       <ContextMenuPrimitive.RadioItemIndicator className="absolute left-2.5">

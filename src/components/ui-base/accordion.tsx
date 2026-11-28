@@ -2,11 +2,12 @@ import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion"
 import { cn } from "@/lib/utils"
 
 /** `value` is always an array. One panel at a time by default; pass `multiple` to allow several. */
-function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
+/* Base UI types these values as `any`. The type argument (string unless you say or pass otherwise) keeps `any` out of your handlers. */
+function Accordion<TValue = string>({ className, ...props }: AccordionPrimitive.Root.Props<TValue>) {
   return <AccordionPrimitive.Root data-slot="accordion" className={cn("flex flex-col type-16 text-material-text", className)} {...props} />
 }
 
-function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
+function AccordionItem<TValue = string>({ className, ...props }: Omit<AccordionPrimitive.Item.Props, "value"> & { value?: TValue }) {
   return <AccordionPrimitive.Item data-slot="accordion-item" className={cn("border-b border-b-border-lightest shadow-[inset_0_-1px_0_0_var(--border-dark)] last:border-b-0 last:shadow-none", className)} {...props} />
 }
 

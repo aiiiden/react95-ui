@@ -3,7 +3,19 @@ import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
 import { cn } from "@/lib/utils"
 import { TriangleLeft, TriangleRight } from "@/components/ui/icons"
 
-function Tabs({ className, ...props }: TabsPrimitive.Root.Props) {
+/* Base UI types a tab's value as `any`, which would reach every onValueChange handler.
+ * These types narrow it: a tab value is a string or a number, and Tabs takes the exact type
+ * (a union of your tab names, say) as a type argument, inferred from `value` / `defaultValue`. */
+type TabValue = string | number
+
+type TabsProps<TValue extends TabValue = string> = Omit<TabsPrimitive.Root.Props, "value" | "defaultValue" | "onValueChange"> & {
+  value?: TValue | null
+  defaultValue?: TValue | null
+  /** `value` is null when no tab can be selected (every tab removed or disabled) */
+  onValueChange?: (value: TValue | null, eventDetails: TabsPrimitive.Root.ChangeEventDetails) => void
+}
+
+function Tabs<TValue extends TabValue = string>({ className, ...props }: TabsProps<TValue>) {
   return <TabsPrimitive.Root data-slot="tabs" className={cn("flex flex-col type-16", className)} {...props} />
 }
 
@@ -181,7 +193,7 @@ function TabsList({ className, overflow = "multiline", activateOnFocus = true, .
 /* Tab edges use the same rings as bevel-window (2px outer + 2px inner), so the selected
  * tab's sides run straight into the panel's border. Its ::after erases the 4px of panel
  * border underneath it. */
-function TabsTrigger({ className, children, ...props }: TabsPrimitive.Tab.Props) {
+function TabsTrigger({ className, children, ...props }: Omit<TabsPrimitive.Tab.Props, "value"> & { value: TabValue }) {
   return (
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
@@ -203,8 +215,8 @@ function TabsTrigger({ className, children, ...props }: TabsPrimitive.Tab.Props)
   )
 }
 
-function TabsContent({ className, ...props }: TabsPrimitive.Panel.Props) {
+function TabsContent({ className, ...props }: Omit<TabsPrimitive.Panel.Props, "value"> & { value: TabValue }) {
   return <TabsPrimitive.Panel data-slot="tabs-content" className={cn("bevel-window bg-material p-4 type-16 text-material-text outline-none", className)} {...props} />
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent }
+export { Tabs, TabsList, TabsTrigger, TabsContent, type TabsProps }

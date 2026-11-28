@@ -38,7 +38,14 @@ function MenubarSub(props: MenuPrimitive.SubmenuRoot.Props) {
   return <MenuPrimitive.SubmenuRoot data-slot="menubar-sub" {...props} />
 }
 
-function MenubarRadioGroup(props: MenuPrimitive.RadioGroup.Props) {
+/* Base UI types these values as `any`. The type argument (string unless you say or pass otherwise) keeps `any` out of your handlers. */
+type MenubarRadioGroupProps<TValue> = Omit<MenuPrimitive.RadioGroup.Props, "value" | "defaultValue" | "onValueChange"> & {
+  value?: TValue
+  defaultValue?: TValue
+  onValueChange?: (value: TValue, eventDetails: MenuPrimitive.RadioGroup.ChangeEventDetails) => void
+}
+
+function MenubarRadioGroup<TValue = string>(props: MenubarRadioGroupProps<TValue>) {
   return <MenuPrimitive.RadioGroup data-slot="menubar-radio-group" {...props} />
 }
 
@@ -70,7 +77,7 @@ function MenubarCheckboxItem({ className, children, ...props }: MenuPrimitive.Ch
   )
 }
 
-function MenubarRadioItem({ className, children, ...props }: MenuPrimitive.RadioItem.Props) {
+function MenubarRadioItem<TValue = string>({ className, children, ...props }: Omit<MenuPrimitive.RadioItem.Props, "value"> & { value: TValue }) {
   return (
     <MenuPrimitive.RadioItem data-slot="menubar-radio-item" className={cn(menuItemClass, className)} {...props}>
       <MenuPrimitive.RadioItemIndicator className="absolute left-2.5">
